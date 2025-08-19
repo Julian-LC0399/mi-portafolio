@@ -15,7 +15,7 @@ function App() {
         <header className="app-header">
           <nav className="main-nav">
             <div className="nav-content">
-              <h1 className="nav-logo">Julián López</h1>
+              <h1 className="nav-logo">Portafolio</h1>
               <LanguageSwitcher />
             </div>
           </nav>
