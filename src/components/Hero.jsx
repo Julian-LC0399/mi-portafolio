@@ -32,7 +32,7 @@ const Hero = () => {
         </button>
       </div>
       <div className="hero-image">
-        <img src={profileImage} alt="Julián López" />
+        <img src={profileImage} alt="Julián López Castillo" />
       </div>
     </section>
   );
