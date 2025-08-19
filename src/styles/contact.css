@@ -1,8 +1,7 @@
 /* src/styles/contact.css */
-
 .contact-section {
   padding: 5rem 1rem;
-  background-color: #f8f9fa;
+  background-color: #fff;
   position: relative;
 }
 
@@ -17,10 +16,24 @@
   font-size: 2.5rem;
   margin-bottom: 1rem;
   color: #2c3e50;
+  position: relative;
+}
+
+.contact-title::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  margin: 0.5rem auto;
+  border-radius: 2px;
 }
 
 .highlight {
-  color: #007bff;
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .contact-subtitle {
@@ -42,39 +55,46 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  padding: 1.5rem;
+  padding: 2rem;
   background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 123, 255, 0.1);
 }
 
 .contact-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 123, 255, 0.15);
 }
 
 .contact-card-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   color: white;
   flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.contact-card:hover .contact-card-icon {
+  transform: scale(1.1);
 }
 
 .whatsapp-bg {
-  background-color: #25D366;
+  background: linear-gradient(135deg, #25D366, #128C7E);
 }
 
 .email-bg {
-  background-color: #007bff;
+  background: linear-gradient(135deg, #007bff, #00bfff);
 }
 
 .github-bg {
-  background-color: #333;
+  background: linear-gradient(135deg, #333, #555);
 }
 
 .contact-card-content {
@@ -82,26 +102,30 @@
 }
 
 .contact-card-content h3 {
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.8rem 0;
   color: #2c3e50;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .contact-link {
   color: #007bff;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 .contact-link:hover {
   color: #0056b3;
-  text-decoration: underline;
+  transform: translateX(5px);
 }
 
 .contact-note {
   color: #6c757d;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   margin: 0.5rem 0 0 0;
 }
 
@@ -110,23 +134,24 @@
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 60px;
-  height: 60px;
-  background-color: #25D366;
+  width: 65px;
+  height: 65px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+  font-size: 2rem;
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
   z-index: 1000;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .whatsapp-float:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 10px 35px rgba(37, 211, 102, 0.6);
 }
 
 /* Responsive */
@@ -143,10 +168,22 @@
     grid-template-columns: 1fr;
   }
   
-  .whatsapp-float {
-    width: 50px;
-    height: 50px;
+  .contact-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  
+  .contact-card-icon {
+    width: 60px;
+    height: 60px;
     font-size: 1.5rem;
+  }
+  
+  .whatsapp-float {
+    width: 55px;
+    height: 55px;
+    font-size: 1.7rem;
     bottom: 1.5rem;
     right: 1.5rem;
   }

@@ -1,7 +1,7 @@
 /* Estilos base (mobile-first) */
 .skills-section {
-  padding: 2rem 1rem;
-  background-color: var(--background-primary);
+  padding: 4rem 1rem;
+  background-color: white;
 }
 
 .skills-section .container {
@@ -9,79 +9,121 @@
   margin: 0 auto;
 }
 
-.section-title {
-  font-size: 2rem;
+.skills-section h2 {
+  font-size: 2.5rem;
   text-align: center;
   margin-bottom: 1rem;
-  color: var(--text-primary);
+  color: #2c3e50;
+  position: relative;
+}
+
+.skills-section h2::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  margin: 0.5rem auto;
+  border-radius: 2px;
 }
 
 .highlight {
-  color: var(--primary-color);
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .section-subtitle {
   text-align: center;
-  color: var(--text-secondary);
-  margin-bottom: 2rem;
+  color: #6c757d;
+  margin-bottom: 3rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  font-size: 1.1rem;
 }
 
 .skills-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .skill-category-card {
-  background: var(--card-background);
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 123, 255, 0.1);
 }
 
 .skill-category-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 123, 255, 0.15);
 }
 
 .category-header {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .category-header svg {
-  font-size: 1.5rem;
-  color: var(--primary-color);
+  font-size: 2rem;
+  color: #007bff; /* Color sólido en lugar de gradiente */
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .category-header h3 {
-  font-size: 1.3rem;
-  color: var(--text-primary);
+  font-size: 1.4rem;
+  color: #2c3e50;
+  font-weight: 600;
 }
 
 .skills-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .skill-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 4px;
-  background: var(--skill-item-bg);
+  gap: 0.8rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(0, 123, 255, 0.05);
+  border: 1px solid rgba(0, 123, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+  background: rgba(0, 123, 255, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.1);
 }
 
 .skill-item svg {
-  font-size: 1.2rem;
-  color: var(--primary-color);
+  font-size: 1.5rem;
+  color: #007bff; /* Color sólido para mejor visibilidad */
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+
+.skill-item:hover svg {
+  color: #0056b3; /* Color más oscuro al hacer hover */
+}
+
+.skill-item span {
+  color: #2c3e50;
+  font-weight: 500;
+  font-size: 0.95rem;
 }
 
 /* Media queries para tablets */
@@ -98,32 +140,62 @@
 /* Media queries para desktop */
 @media (min-width: 1024px) {
   .skills-section {
-    padding: 4rem 2rem;
+    padding: 6rem 2rem;
   }
   
-  .section-title {
-    font-size: 2.5rem;
+  .skills-section h2 {
+    font-size: 3rem;
     margin-bottom: 1.5rem;
   }
   
   .skills-grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
+    gap: 2.5rem;
   }
   
   .skill-category-card {
-    padding: 2rem;
+    padding: 2.5rem;
   }
   
   .category-header svg {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
   }
   
   .category-header h3 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
   
   .skills-container {
     grid-template-columns: 1fr;
+  }
+  
+  .skill-item {
+    padding: 1.2rem;
+  }
+  
+  .skill-item svg {
+    font-size: 1.6rem;
+  }
+  
+  .skill-item span {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .skill-item {
+    padding: 0.8rem;
+  }
+  
+  .skill-item svg {
+    font-size: 1.3rem;
+  }
+  
+  .skill-item span {
+    font-size: 0.9rem;
   }
 }
