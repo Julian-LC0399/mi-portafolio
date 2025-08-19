@@ -19,7 +19,7 @@ const Hero = () => {
   return (
     <section className="hero">
       <div className="hero-content">
-        <h1>Julián López</h1>
+        <h1>Julián López Castillo</h1>
         <h2>{t('hero.title')}</h2>
         <p>{t('hero.description')}</p>
         <div className="tech-highlights">
@@ -32,7 +32,7 @@ const Hero = () => {
         </button>
       </div>
       <div className="hero-image">
-        <img src={profileImage} alt="Julián López Castillo" />
+        <img src={profileImage} alt="Julián López" />
       </div>
     </section>
   );
