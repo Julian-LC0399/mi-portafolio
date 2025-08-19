@@ -1,0 +1,179 @@
+.download-buttons {
+  position: fixed;
+  bottom: 120px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.download-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+}
+
+.download-btn.spanish {
+  background: linear-gradient(135deg, #007bff, #00bfff);
+  color: white;
+}
+
+.download-btn.english {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+}
+
+.download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.download-btn:active {
+  transform: translateY(0);
+}
+
+/* Efecto de pulso para llamar la atención */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.download-btn {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.download-btn:hover {
+  animation: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .download-buttons {
+    bottom: 100px;
+    right: 10px;
+  }
+  
+  .download-btn {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .download-buttons {
+    bottom: 90px;
+    right: 8px;
+  }
+  
+  .download-btn {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+}
+
+/* ===== ESTILOS PARA IMPRESIÓN Y EXPORTACIÓN A PDF ===== */
+@media print {
+  @page {
+    margin: 0.5in;
+    size: portrait;
+  }
+  
+  /* Ocultar elementos no deseados en el PDF */
+  .main-nav,
+  .download-buttons, 
+  .language-switcher,
+  footer,
+  .contact-form,
+  .app-header {
+    display: none !important;
+  }
+  
+  /* Asegurar que el contenido ocupe toda la página */
+  .App {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  
+  /* Mejorar la apariencia para PDF */
+  .hero-section, 
+  .about-section, 
+  .projects-section, 
+  .skills-section, 
+  .contact-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Asegurar que los fondos se impriman */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* Mejorar tipografía para impresión */
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    background: white !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #000;
+    page-break-after: avoid;
+  }
+  
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+  
+  /* Evitar que se corten elementos entre páginas */
+  .project-card,
+  .skill-item {
+    page-break-inside: avoid;
+  }
+  
+  /* Ajustar espaciado para impresión */
+  .section-title {
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Estilos para modo preparación de impresión */
+.print-mode .main-nav,
+.print-mode .download-buttons, 
+.print-mode .language-switcher,
+.print-mode footer,
+.print-mode .contact-form,
+.print-mode .app-header {
+  display: none !important;
+}
+
+.print-mode body {
+  background: white !important;
+}
+
+.print-mode .hero-section, 
+.print-mode .about-section, 
+.print-mode .projects-section, 
+.print-mode .skills-section, 
+.print-mode .contact-section {
+  margin: 1rem 0;
+}

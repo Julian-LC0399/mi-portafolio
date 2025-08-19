@@ -7,6 +7,7 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import { LanguageProvider } from './context/LanguageContext';
 import LanguageSwitcher from './components/LanguageSwitcher';
+import DownloadButtons from './components/DownloadButtons'; // Importación añadida
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
         <Projects />
         <Skills />
         <Contact />
+        
+        <DownloadButtons /> {/* Componente añadido */}
       </div>
     </LanguageProvider>
   );
