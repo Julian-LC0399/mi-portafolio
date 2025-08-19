@@ -6,7 +6,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth;  Disabled for Safari iOS < 15.4 compatibility, use JS fallback */
   font-size: 16px;
 }
 
@@ -73,6 +73,110 @@ img {
   padding: 0 1.5rem;
 }
 
+/* Header y Navegación */
+.app-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.main-nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Botón de idioma */
+.language-switcher {
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  margin-left: 20px;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.language-switcher:hover {
+  background: linear-gradient(90deg, #0056b3, #0099cc);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+.language-switcher:active {
+  transform: translateY(0);
+}
+
+/* Ajuste para el contenido debajo del header fixed */
+.App {
+  padding-top: 80px;
+}
+
+/* Variables CSS para colores */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #00bfff;
+  --accent-color: linear-gradient(90deg, #007bff, #00bfff);
+  --accent-hover: linear-gradient(90deg, #0056b3, #0099cc);
+  --text-color: #333;
+  --text-light: #555;
+  --bg-color: #fff;
+  --bg-secondary: #f8f9fa;
+  --border-color: #e9ecef;
+}
+
+/* Modo oscuro (opcional para futuro) */
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #f0f0f0;
+    background-color: #1a1a1a;
+  }
+  
+  .app-header {
+    background: rgba(26, 26, 26, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  h1, h2, h3, h4 {
+    color: #f0f0f0;
+  }
+  
+  p {
+    color: #ccc;
+  }
+  
+  .nav-logo {
+    color: #f0f0f0;
+  }
+}
+
 /* Animaciones */
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -100,10 +204,47 @@ img {
     font-size: 2.5rem;
     margin-bottom: 4rem;
   }
+  
+  .nav-logo {
+    font-size: 1.8rem;
+  }
+  
+  .language-switcher {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
 }
 
 @media (min-width: 1024px) {
   section {
     padding: 6rem 2rem;
+  }
+  
+  .app-header {
+    padding: 1.2rem 0;
+  }
+  
+  .nav-logo {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-nav {
+    padding: 0 1rem;
+  }
+  
+  .nav-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .language-switcher {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+  
+  .App {
+    padding-top: 120px;
   }
 }

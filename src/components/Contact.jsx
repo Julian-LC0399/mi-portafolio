@@ -1,20 +1,18 @@
 import React from 'react';
 import '../styles/contact.css';
-import { FaGithub, FaEnvelope, FaWhatsapp } from 'react-icons/fa'; // Eliminé FaPhone que no se usa
+import { FaGithub, FaEnvelope, FaWhatsapp } from 'react-icons/fa';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Contact = () => {
-  // Número en formato internacional para WhatsApp (sin '+' inicial)
+  const { t } = useTranslation();
+  
   const whatsappNumber = '584126918133';
-  // Número formateado para visualización
   const formattedPhone = '+58 412-6918133';
-  // Mensaje predeterminado para WhatsApp
-  const whatsappMessage = 'Hola Julián, vi tu portafolio y me gustaría contactarte';
-  // Genera el enlace de WhatsApp correctamente codificado
+  const whatsappMessage = t('contact.whatsappMessage');
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <section id="contact" className="contact-section">
-      {/* Botón flotante de WhatsApp */}
       <a 
         href={whatsappLink} 
         className="whatsapp-float"
@@ -26,34 +24,32 @@ const Contact = () => {
       </a>
 
       <div className="contact-container">
-        <h2 className="contact-title">Contáct<span className="highlight">ame</span></h2>
-        <p className="contact-subtitle">Estoy disponible por estos medios directos:</p>
+        <h2 className="contact-title">{t('contact.title')}</h2>
+        <p className="contact-subtitle">{t('contact.subtitle')}</p>
         
         <div className="contact-methods-grid">
-          {/* WhatsApp/Teléfono */}
           <div className="contact-card">
             <div className="contact-card-icon whatsapp-bg">
               <FaWhatsapp className="contact-icon" />
             </div>
             <div className="contact-card-content">
-              <h3>WhatsApp/Teléfono</h3>
+              <h3>{t('contact.whatsapp')}</h3>
               <a href={whatsappLink} 
                  target="_blank" 
                  rel="noopener noreferrer nofollow" 
                  className="contact-link">
                 {formattedPhone}
               </a>
-              <p className="contact-note">Haz clic para enviar un mensaje directo</p>
+              <p className="contact-note">{t('contact.clickMessage')}</p>
             </div>
           </div>
 
-          {/* Email */}
           <div className="contact-card">
             <div className="contact-card-icon email-bg">
               <FaEnvelope className="contact-icon" />
             </div>
             <div className="contact-card-content">
-              <h3>Correo Electrónico</h3>
+              <h3>{t('contact.email')}</h3>
               <a href="mailto:julianlopezcastillo12@gmail.com" 
                  className="contact-link">
                 julianlopezcastillo12@gmail.com
@@ -61,13 +57,12 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* GitHub */}
           <div className="contact-card">
             <div className="contact-card-icon github-bg">
               <FaGithub className="contact-icon" />
             </div>
             <div className="contact-card-content">
-              <h3>GitHub</h3>
+              <h3>{t('contact.github')}</h3>
               <a href="https://github.com/Julian-LC0399" 
                  target="_blank" 
                  rel="noopener noreferrer nofollow" 

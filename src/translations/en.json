@@ -1,0 +1,54 @@
+{
+  "hero": {
+    "title": "Full-Stack Developer",
+    "description": "Specialized in JavaScript architectures (React, Node.js) and PHP (Laravel). I develop complete solutions from interactive frontend to robust APIs, with special focus on accessibility.",
+    "cta": "View Full-Stack Projects",
+    "techs": ["React", "Node.js", "Laravel", "Accessibility"]
+  },
+  "about": {
+    "title": "About Me",
+    "sections": {
+      "history": {
+        "title": "My Story",
+        "content": "I'm Julián López, Computer Engineering student at the Universidad Nacional Experimental de Guayana (UNEG). As a person with motor disability, I have a special interest in developing accessible technologies."
+      },
+      "environment": {
+        "title": "Work Environment",
+        "content": "I develop my projects in Visual Studio Code with customized configurations for efficiency and accessibility, using extensions like ESLint, Prettier and WCAG tools. My environment is optimized for Full-Stack development productivity."
+      },
+      "focus": {
+        "title": "Professional Focus",
+        "content": "Full-Stack Developer specialized in JavaScript solutions (React, Node.js) and PHP (Laravel). I combine my technical knowledge with my unique perspective on digital accessibility."
+      },
+      "skills": {
+        "title": "Key Skills",
+        "items": ["React.js / Next.js", "Node.js / Express", "PHP / Laravel", "WCAG Accessibility", "Git and version control", "Agile development"]
+      }
+    }
+  },
+  "projects": {
+    "title": "My Projects",
+    "subtitle": "Some of my recent works",
+    "viewCode": "View Code",
+    "viewDemo": "View Demo"
+  },
+  "skills": {
+    "title": "Full-Stack Expertise",
+    "subtitle": "Technologies I master in both frontend and backend",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Databases",
+      "devops": "DevOps & Tools"
+    }
+  },
+  "contact": {
+    "title": "Contact Me",
+    "subtitle": "I'm available through these direct channels:",
+    "whatsapp": "WhatsApp/Phone",
+    "email": "Email",
+    "github": "GitHub",
+    "clickMessage": "Click to send a direct message",
+    "whatsappMessage": "Hello Julián, I saw your portfolio and would like to contact you"
+  }
+}

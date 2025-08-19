@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/projects.css';
 import Eduneg from '../assets/images/eduneg.png';
+import { useTranslation } from '../hooks/useTranslation';
 
 const projects = [
   {
@@ -13,15 +14,16 @@ const projects = [
     image: Eduneg,
     alt: "Captura de pantalla de la aplicación Gestión de Materias"
   },
-
 ];
 
 const Projects = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="projects" className="projects">
       <div className="container">
-        <h2 className="section-title">Mis <span className="highlight">Proyectos</span></h2>
-        <p className="section-subtitle">Algunos de mis trabajos recientes</p>
+        <h2 className="section-title">{t('projects.title')}</h2>
+        <p className="section-subtitle">{t('projects.subtitle')}</p>
         
         <div className="projects-grid">
           {projects.map((project) => (
@@ -50,7 +52,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className="project-link"
                     >
-                      Ver Código
+                      {t('projects.viewCode')}
                     </a>
                   )}
                   {project.demo && (
@@ -60,7 +62,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className="project-link demo"
                     >
-                      Ver Demo
+                      {t('projects.viewDemo')}
                     </a>
                   )}
                 </div>

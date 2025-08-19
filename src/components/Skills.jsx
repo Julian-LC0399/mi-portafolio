@@ -15,22 +15,25 @@ import {
   SiGithub, 
   SiReact,
   SiTailwindcss,
-  SiBootstrap // Importación añadida para Bootstrap
+  SiBootstrap
 } from 'react-icons/si';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Skills = () => {
+  const { t } = useTranslation();
+
   const skillCategories = [
     {
-      title: "Frontend",
+      title: t('skills.categories.frontend'),
       icon: <FaLaptopCode />,
       skills: [
         { name: "React.js/Next.js", icon: <SiReact /> },
         { name: "Tailwind/Sass", icon: <SiTailwindcss /> },
-        { name: "Bootstrap", icon: <SiBootstrap /> } // Añadido aquí
+        { name: "Bootstrap", icon: <SiBootstrap /> }
       ]
     },
     {
-      title: "Backend",
+      title: t('skills.categories.backend'),
       icon: <FaServer />,
       skills: [
         { name: "Node.js/Express", icon: <FaNodeJs /> },
@@ -39,7 +42,7 @@ const Skills = () => {
       ]
     },
     {
-      title: "Bases de Datos",
+      title: t('skills.categories.database'),
       icon: <FaDatabase />,
       skills: [
         { name: "MySQL", icon: <SiMysql /> },
@@ -47,7 +50,7 @@ const Skills = () => {
       ]
     },
     {
-      title: "DevOps & Herramientas",
+      title: t('skills.categories.devops'),
       icon: <FaTools />,
       skills: [
         { name: "Git/GitHub", icon: <SiGithub /> },
@@ -58,9 +61,9 @@ const Skills = () => {
   return (
     <section id="skills" className="skills-section">
       <div className="container">
-        <h2>Dominio <span className="highlight">Full-Stack</span></h2>
+        <h2>{t('skills.title')}</h2>
         <p className="section-subtitle">
-          Tecnologías que domino tanto en frontend como backend
+          {t('skills.subtitle')}
         </p>
         
         <div className="skills-grid">
