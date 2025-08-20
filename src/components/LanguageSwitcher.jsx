@@ -11,7 +11,7 @@ const LanguageSwitcher = () => {
       className="language-switcher"
       aria-label={`Cambiar idioma a ${language === 'es' ? 'inglés' : 'español'}`}
     >
-      {language === 'es' ? '🇺🇸 EN' : '🇪🇸 ES'}
+      {language === 'es' ? ' Change english' : 'Cambiar a español'}
     </button>
   );
 };

@@ -99,14 +99,56 @@ img {
   align-items: center;
 }
 
-.nav-logo {
+/* Botón de inicio (reemplaza al .nav-logo) */
+.nav-logo-button {
+  background: none;
+  border: none;
+  color: #2c3e50;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #2c3e50;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: inherit;
   background: linear-gradient(90deg, #007bff, #00bfff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-logo-button:hover {
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.nav-logo-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+}
+
+.nav-logo-button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo-button:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 /* Botón de idioma */
@@ -172,7 +214,7 @@ img {
     color: #ccc;
   }
   
-  .nav-logo {
+  .nav-logo-button {
     color: #f0f0f0;
   }
 }
@@ -205,7 +247,7 @@ img {
     margin-bottom: 4rem;
   }
   
-  .nav-logo {
+  .nav-logo-button {
     font-size: 1.8rem;
   }
   
@@ -224,7 +266,7 @@ img {
     padding: 1.2rem 0;
   }
   
-  .nav-logo {
+  .nav-logo-button {
     font-size: 2rem;
   }
 }
@@ -246,5 +288,10 @@ img {
   
   .App {
     padding-top: 120px;
+  }
+  
+  .nav-logo-button {
+    font-size: 1.3rem;
+    padding: 0.4rem 0.8rem;
   }
 }

@@ -13,15 +13,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="contact-section">
-      <a 
-        href={whatsappLink} 
-        className="whatsapp-float"
-        target="_blank" 
-        rel="noopener noreferrer nofollow"
-        aria-label="Contactar por WhatsApp"
-      >
-        <FaWhatsapp className="whatsapp-icon" />
-      </a>
+      {/* Se ha eliminado el ícono flotante de WhatsApp */}
 
       <div className="contact-container">
         <h2 className="contact-title">{t('contact.title')}</h2>

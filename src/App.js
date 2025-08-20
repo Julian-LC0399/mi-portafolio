@@ -7,16 +7,31 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import { LanguageProvider } from './context/LanguageContext';
 import LanguageSwitcher from './components/LanguageSwitcher';
-import DownloadButtons from './components/DownloadButtons'; // Importación añadida
+import DownloadButtons from './components/DownloadButtons';
 
 function App() {
+  // Función para scroll suave al principio
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <LanguageProvider>
       <div className="App">
         <header className="app-header">
           <nav className="main-nav">
             <div className="nav-content">
-              <h1 className="nav-logo">Portafolio</h1>
+              {/* Botón de inicio en lugar del título estático */}
+              <button 
+                onClick={scrollToTop}
+                className="nav-logo-button"
+                aria-label="Volver al inicio"
+              >
+                Volver al principio
+              </button>
               <LanguageSwitcher />
             </div>
           </nav>
@@ -28,7 +43,7 @@ function App() {
         <Skills />
         <Contact />
         
-        <DownloadButtons /> {/* Componente añadido */}
+        <DownloadButtons />
       </div>
     </LanguageProvider>
   );
