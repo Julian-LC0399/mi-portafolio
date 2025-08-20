@@ -141,7 +141,8 @@
   gap: 1rem;
 }
 
-.project-links a {
+/* ESTILOS ACTUALIZADOS PARA BOTONES */
+.project-link {
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
   font-weight: 500;
@@ -151,28 +152,29 @@
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
-.project-links a:first-child {
+.project-link:hover {
+  background: linear-gradient(90deg, #0069d9, #0099cc);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  color: white;
+}
+
+/* Eliminamos los estilos específicos para el botón demo ya que ahora son iguales */
+.project-link.demo {
+  /* Mismos estilos que el botón principal */
   background: linear-gradient(90deg, #007bff, #00bfff);
   color: white;
 }
 
-.project-links a:first-child:hover {
+.project-link.demo:hover {
   background: linear-gradient(90deg, #0069d9, #0099cc);
-  transform: translateY(-2px);
-}
-
-.project-links a:last-child {
-  border: 2px solid #007bff;
-  color: #007bff;
-  background: transparent;
-}
-
-.project-links a:last-child:hover {
-  background: #007bff;
   color: white;
-  transform: translateY(-2px);
 }
 
 /* Animaciones */
@@ -209,5 +211,17 @@
   
   .section-title {
     font-size: 3rem;
+  }
+}
+
+/* Ajustes para móviles */
+@media (max-width: 480px) {
+  .project-links {
+    flex-direction: column;
+  }
+  
+  .project-link {
+    text-align: center;
+    justify-content: center;
   }
 }

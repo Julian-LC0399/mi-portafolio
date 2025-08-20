@@ -1,23 +1,31 @@
 import React from 'react';
 import '../styles/projects.css';
 import Eduneg from '../assets/images/eduneg.png';
+import Gestion from '../assets/images/gestion.png';
 import { useTranslation } from '../hooks/useTranslation';
-
-const projects = [
-  {
-    id: 1,
-    title: "Eduneg",
-    description: "Aplicación para gestión de materias.",
-    technologies: ["Next.js", "Tailwind"],
-    github: "https://github.com/Vdiaz127/EDUNEG",
-    demo: "https://eduneg.onrender.com/",
-    image: Eduneg,
-    alt: "Captura de pantalla de la aplicación Gestión de Materias"
-  },
-];
 
 const Projects = () => {
   const { t } = useTranslation();
+
+  const projects = [
+    {
+      id: 1,
+      titleKey: "eduneg",
+      technologies: ["Next.js", "Tailwind"],
+      github: "https://github.com/Vdiaz127/EDUNEG",
+      demo: "https://eduneg.onrender.com/",
+      image: Eduneg,
+      alt: "Captura de pantalla de la aplicación Gestión de Materias"
+    },
+    {
+      id: 2,
+      titleKey: "accountModule",
+      technologies: ["PHP", "MySQL"],
+      github: "https://github.com/Julian-LC0399/Sistema-descriptivo-de-movimiento-de-cuenta",
+      image: Gestion,
+      alt: "Captura de pantalla del módulo de movimiento de cuentas" 
+    }
+  ];
 
   return (
     <section id="projects" className="projects">
@@ -37,8 +45,8 @@ const Projects = () => {
                 <div className="project-overlay"></div>
               </div>
               <div className="project-info">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
+                <h3>{t(`projects.projectsList.${project.titleKey}.title`)}</h3>
+                <p>{t(`projects.projectsList.${project.titleKey}.description`)}</p>
                 <div className="technologies">
                   {project.technologies.map((tech, index) => (
                     <span key={index} className="tech-tag">{tech}</span>

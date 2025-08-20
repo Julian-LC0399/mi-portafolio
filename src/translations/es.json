@@ -27,26 +27,36 @@
     }
   },
   "projects": {
-    "title": "Mis Proyectos",
+    "title": "Mis proyectos",
     "subtitle": "Algunos de mis trabajos recientes",
-    "viewCode": "Ver Código",
-    "viewDemo": "Ver Demo"
+    "viewCode": "Ver código",
+    "viewDemo": "Ver demo",
+    "projectsList": {
+      "eduneg": {
+        "title": "Eduneg",
+        "description": "Aplicación para gestión de materias con interfaz intuitiva y diseño responsivo."
+      },
+      "accountModule": {
+        "title": "Módulo de movimiento de cuentas",
+        "description": "Módulo para gestionar el movimiento de cuentas en una aplicación de gestión con transacciones seguras."
+      }
+    }
   },
   "skills": {
-    "title": "Dominio Full-Stack",
+    "title": "Dominio Full-stack",
     "subtitle": "Tecnologías que domino tanto en frontend como backend",
     "categories": {
       "frontend": "Frontend",
       "backend": "Backend",
-      "database": "Bases de Datos",
-      "devops": "DevOps & Herramientas"
+      "database": "Bases de datos",
+      "devops": "DevOps y herramientas"
     }
   },
   "contact": {
     "title": "Contáctame",
     "subtitle": "Estoy disponible por estos medios directos:",
     "whatsapp": "WhatsApp/Teléfono",
-    "email": "Correo Electrónico",
+    "email": "Correo electrónico",
     "github": "GitHub",
     "clickMessage": "Haz clic para enviar un mensaje directo",
     "whatsappMessage": "Hola Julián, vi tu portafolio y me gustaría contactarte"

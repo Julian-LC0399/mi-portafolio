@@ -6,34 +6,44 @@
     "techs": ["React", "Node.js", "Laravel", "Accessibility"]
   },
   "about": {
-    "title": "About Me",
+    "title": "About me",
     "sections": {
       "history": {
-        "title": "My Story",
+        "title": "My story",
         "content": "I'm Julián López Castillo, Computer Engineering student at the Universidad Nacional Experimental de Guayana (UNEG). As a person with motor disability, I have a special interest in developing accessible technologies."
       },
       "environment": {
-        "title": "Work Environment",
+        "title": "Work environment",
         "content": "I develop my projects in Visual Studio Code with customized configurations for efficiency and accessibility, using extensions like ESLint, Prettier and WCAG tools. My environment is optimized for Full-Stack development productivity."
       },
       "focus": {
-        "title": "Professional Focus",
+        "title": "Professional focus",
         "content": "Full-Stack Developer specialized in JavaScript solutions (React, Node.js) and PHP (Laravel). I combine my technical knowledge with my unique perspective on digital accessibility."
       },
       "skills": {
-        "title": "Key Skills",
+        "title": "Key skills",
         "items": ["React.js / Next.js", "Node.js / Express", "PHP / Laravel", "WCAG Accessibility", "Git and version control", "Agile development"]
       }
     }
   },
   "projects": {
-    "title": "My Projects",
+    "title": "My projects",
     "subtitle": "Some of my recent works",
-    "viewCode": "View Code",
-    "viewDemo": "View Demo"
+    "viewCode": "View code",
+    "viewDemo": "View demo",
+    "projectsList": {
+      "eduneg": {
+        "title": "Eduneg",
+        "description": "Application for subject management with intuitive interface and responsive design."
+      },
+      "accountModule": {
+        "title": "Account Movement Module",
+        "description": "Module to manage account movements in a management application with secure transactions."
+      }
+    }
   },
   "skills": {
-    "title": "Full-Stack Expertise",
+    "title": "Full-stack expertise",
     "subtitle": "Technologies I master in both frontend and backend",
     "categories": {
       "frontend": "Frontend",
@@ -43,7 +53,7 @@
     }
   },
   "contact": {
-    "title": "Contact Me",
+    "title": "Contact me",
     "subtitle": "I'm available through these direct channels:",
     "whatsapp": "WhatsApp/Phone",
     "email": "Email",
