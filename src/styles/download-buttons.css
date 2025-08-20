@@ -83,10 +83,10 @@
   }
 }
 
-/* ===== ESTILOS OPTIMIZADOS PARA IMPRESIÓN Y PDF ===== */
+/* ===== ESTILOS OPTIMIZADOS PARA IMPRESIÓN Y PDF - CORREGIDOS ===== */
 @media print {
   @page {
-    margin: 0.25in;
+    margin: 0.5in; /* Aumentado de 0.25in para mejor espaciado */
     size: portrait;
   }
   
@@ -96,54 +96,102 @@
   .language-switcher,
   footer,
   .contact-form,
-  .app-header {
+  .app-header,
+  .btn,
+  button {
     display: none !important;
   }
   
-  /* Optimizar espaciado para ahorrar espacio */
+  /* Asegurar que el contenido ocupe todo el ancho disponible */
+  body, .container, section {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
+  }
+  
+  /* Optimizar espaciado para impresión */
   .hero-section, 
   .about-section, 
   .projects-section, 
   .skills-section, 
-  .contact-section {
+  .contact-section,
+  section {
     break-inside: avoid;
     page-break-inside: avoid;
-    margin-bottom: 0.75rem !important;
-    padding: 0.5rem !important;
+    margin: 0 0 1rem 0 !important;
+    padding: 0.5rem 0 !important;
+    width: 100% !important;
   }
   
-  /* Reducir tamaño de fuentes para ahorrar espacio */
+  /* Evitar que los elementos se corten entre páginas */
+  .project-card,
+  .skill-item,
+  .card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  /* Reducir tamaño de fuentes para ahorrar espacio pero mantener legibilidad */
   body {
-    font-size: 11pt !important;
-    line-height: 1.4 !important;
+    font-size: 12pt !important; /* Aumentado de 11pt */
+    line-height: 1.5 !important; /* Aumentado de 1.4 */
     color: #000 !important;
     background: white !important;
   }
   
   h1 {
-    font-size: 18pt !important;
-    margin: 0.5rem 0 !important;
+    font-size: 20pt !important; /* Aumentado de 18pt */
+    margin: 0.75rem 0 !important; /* Aumentado de 0.5rem */
+    page-break-after: avoid;
   }
   
   h2 {
     font-size: 16pt !important;
-    margin: 0.4rem 0 !important;
+    margin: 0.6rem 0 !important; /* Aumentado de 0.4rem */
+    page-break-after: avoid;
   }
   
   h3 {
     font-size: 14pt !important;
-    margin: 0.3rem 0 !important;
+    margin: 0.5rem 0 !important; /* Aumentado de 0.3rem */
+    page-break-after: avoid;
   }
   
   p, li {
-    font-size: 11pt !important;
-    margin: 0.2rem 0 !important;
+    font-size: 12pt !important; /* Aumentado de 11pt */
+    margin: 0.4rem 0 !important; /* Aumentado de 0.2rem */
+    line-height: 1.5;
+  }
+  
+  /* Mejorar espaciado de listas */
+  ul, ol {
+    padding-left: 1.5rem !important;
+  }
+  
+  li {
+    margin-bottom: 0.25rem;
   }
   
   /* Asegurar que los enlaces sean visibles y clickeables en PDF */
   a {
     color: #0000EE !important;
     text-decoration: underline !important;
+  }
+  
+  /* Añadir URLs después de los enlaces para impresión */
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 10pt;
+    font-weight: normal;
+    color: #666;
+  }
+  
+  /* No mostrar URLs para enlaces internos o que sean irrelevantes */
+  a[href^="#"]::after,
+  a[href^="javascript"]::after {
+    content: "";
   }
   
   /* Asegurar que los fondos se impriman */
@@ -153,34 +201,49 @@
   }
   
   /* Optimizar tarjetas de proyecto */
-  .project-card {
+  .project-card,
+  .card {
     break-inside: avoid;
     page-break-inside: avoid;
-    margin-bottom: 0.5rem !important;
-    padding: 0.5rem !important;
+    margin-bottom: 1rem !important; /* Aumentado de 0.5rem */
+    padding: 1rem !important; /* Aumentado de 0.5rem */
     box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+    border: 1px solid #eee !important;
   }
   
-  /* Reducir tamaño de imágenes en PDF */
+  /* Reducir tamaño de imágenes en PDF pero mantener proporciones */
   img {
     max-width: 100% !important;
     height: auto !important;
-    max-height: 200px !important;
+    max-height: 250px !important; /* Aumentado de 200px */
+    page-break-inside: avoid;
   }
   
   /* Mejorar visualización de habilidades */
   .skills-container {
     display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
-    gap: 0.5rem !important;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; /* Aumentado de 120px */
+    gap: 0.75rem !important; /* Aumentado de 0.5rem */
   }
   
   .skill-item {
     break-inside: avoid;
     page-break-inside: avoid;
-    padding: 0.25rem !important;
-    margin: 0.1rem !important;
-    font-size: 10pt !important;
+    padding: 0.5rem !important; /* Aumentado de 0.25rem */
+    margin: 0.2rem !important; /* Aumentado de 0.1rem */
+    font-size: 11pt !important; /* Aumentado de 10pt */
+    border: 1px solid #ddd !important;
+  }
+  
+  /* Mejorar tablas para impresión */
+  table {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  tr {
+    page-break-inside: avoid;
+    break-inside: avoid;
   }
 }
 
@@ -190,21 +253,25 @@
 .print-mode .language-switcher,
 .print-mode footer,
 .print-mode .contact-form,
-.print-mode .app-header {
+.print-mode .app-header,
+.print-mode .btn,
+.print-mode button {
   display: none !important;
 }
 
 .print-mode {
   background: white !important;
+  padding: 1rem !important;
 }
 
 .print-mode .hero-section, 
 .print-mode .about-section, 
 .print-mode .projects-section, 
 .print-mode .skills-section, 
-.print-mode .contact-section {
-  margin: 0.5rem 0 !important;
-  padding: 0.5rem !important;
+.print-mode .contact-section,
+.print-mode section {
+  margin: 1rem 0 !important;
+  padding: 0.5rem 0 !important;
 }
 
 .print-mode a {
