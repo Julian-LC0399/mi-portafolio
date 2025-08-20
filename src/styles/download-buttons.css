@@ -174,12 +174,14 @@
     margin-bottom: 0.25rem;
   }
   
-  /* Asegurar que los enlaces sean visibles y clickeables en PDF */
-  a {
+  /* ===== MEJORAS ESPECÍFICAS PARA ENLACES - SIN MODIFICAR NADA MÁS ===== */
+  /* Asegurar que los enlaces sean MUY visibles y clickeables en PDF */
+  a, a:link, a:visited {
     color: #0000EE !important;
     text-decoration: underline !important;
+    font-weight: 600 !important;
   }
-  
+
   /* Añadir URLs después de los enlaces para impresión */
   a[href]::after {
     content: " (" attr(href) ")";
@@ -187,12 +189,25 @@
     font-weight: normal;
     color: #666;
   }
-  
+
   /* No mostrar URLs para enlaces internos o que sean irrelevantes */
   a[href^="#"]::after,
-  a[href^="javascript"]::after {
+  a[href^="javascript:"]::after,
+  a[href*="mailto:"]::after,
+  a[href*="tel:"]::after {
     content: "";
   }
+
+  /* Estilo especial para botones que son enlaces en el modo normal */
+  a.btn, a.button, a.download-btn {
+    color: #0000EE !important;
+    text-decoration: underline !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    padding: 0.2rem 0.5rem !important;
+  }
+  /* ===== FIN DE MEJORAS PARA ENLACES ===== */
   
   /* Asegurar que los fondos se impriman */
   * {
