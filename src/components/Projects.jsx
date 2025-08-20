@@ -13,8 +13,6 @@ const Projects = () => {
       titleKey: "eduneg",
       technologies: ["Next.js", "Tailwind"],
       github: "https://github.com/Vdiaz127/EDUNEG",
-      //demo: "https://eduneg.onrender.com/",
-      demo:   "https://youtube.com/shorts/qLrfNkXZRZk",
       image: Eduneg,
       alt: "Captura de pantalla de la aplicación Gestión de Materias"
     },
