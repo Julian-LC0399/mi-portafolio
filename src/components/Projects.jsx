@@ -1,27 +1,37 @@
 import React from 'react';
 import '../styles/projects.css';
 import Eduneg from '../assets/images/eduneg.png';
-
-const projects = [
-  {
-    id: 1,
-    title: "Eduneg",
-    description: "Aplicación para gestión de materias.",
-    technologies: ["Next.js", "Tailwind"],
-    github: "https://github.com/Vdiaz127/EDUNEG",
-    demo: "https://eduneg.onrender.com/",
-    image: Eduneg,
-    alt: "Captura de pantalla de la aplicación Gestión de Materias"
-  },
-
-];
+import Gestion from '../assets/images/gestion.png';
+import { useTranslation } from '../hooks/useTranslation';
 
 const Projects = () => {
+  const { t } = useTranslation();
+
+  const projects = [
+    {
+      id: 1,
+      titleKey: "eduneg",
+      technologies: ["Next.js", "Tailwind"],
+      github: "https://github.com/Vdiaz127/EDUNEG",
+      demo: "https://eduneg.onrender.com/",
+      image: Eduneg,
+      alt: "Captura de pantalla de la aplicación Gestión de Materias"
+    },
+    {
+      id: 2,
+      titleKey: "accountModule",
+      technologies: ["PHP", "MySQL"],
+      github: "https://github.com/Julian-LC0399/Sistema-descriptivo-de-movimiento-de-cuenta",
+      image: Gestion,
+      alt: "Captura de pantalla del módulo de movimiento de cuentas" 
+    }
+  ];
+
   return (
     <section id="projects" className="projects">
       <div className="container">
-        <h2 className="section-title">Mis <span className="highlight">Proyectos</span></h2>
-        <p className="section-subtitle">Algunos de mis trabajos recientes</p>
+        <h2 className="section-title">{t('projects.title')}</h2>
+        <p className="section-subtitle">{t('projects.subtitle')}</p>
         
         <div className="projects-grid">
           {projects.map((project) => (
@@ -35,8 +45,8 @@ const Projects = () => {
                 <div className="project-overlay"></div>
               </div>
               <div className="project-info">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
+                <h3>{t(`projects.projectsList.${project.titleKey}.title`)}</h3>
+                <p>{t(`projects.projectsList.${project.titleKey}.description`)}</p>
                 <div className="technologies">
                   {project.technologies.map((tech, index) => (
                     <span key={index} className="tech-tag">{tech}</span>
@@ -50,7 +60,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className="project-link"
                     >
-                      Ver Código
+                      {t('projects.viewCode')}
                     </a>
                   )}
                   {project.demo && (
@@ -60,7 +70,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       className="project-link demo"
                     >
-                      Ver Demo
+                      {t('projects.viewDemo')}
                     </a>
                   )}
                 </div>

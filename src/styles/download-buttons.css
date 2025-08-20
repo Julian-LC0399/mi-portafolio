@@ -1,0 +1,213 @@
+.download-buttons {
+  position: fixed;
+  bottom: 120px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+.download-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+}
+
+.download-btn.spanish {
+  background: linear-gradient(135deg, #007bff, #00bfff);
+  color: white;
+}
+
+.download-btn.english {
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: white;
+}
+
+.download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.download-btn:active {
+  transform: translateY(0);
+}
+
+/* Efecto de pulso para llamar la atención */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.download-btn {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.download-btn:hover {
+  animation: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .download-buttons {
+    bottom: 100px;
+    right: 10px;
+  }
+  
+  .download-btn {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .download-buttons {
+    bottom: 90px;
+    right: 8px;
+  }
+  
+  .download-btn {
+    padding: 8px 14px;
+    font-size: 11px;
+  }
+}
+
+/* ===== ESTILOS OPTIMIZADOS PARA IMPRESIÓN Y PDF ===== */
+@media print {
+  @page {
+    margin: 0.25in;
+    size: portrait;
+  }
+  
+  /* Ocultar elementos no deseados en el PDF */
+  .main-nav,
+  .download-buttons, 
+  .language-switcher,
+  footer,
+  .contact-form,
+  .app-header {
+    display: none !important;
+  }
+  
+  /* Optimizar espaciado para ahorrar espacio */
+  .hero-section, 
+  .about-section, 
+  .projects-section, 
+  .skills-section, 
+  .contact-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 0.75rem !important;
+    padding: 0.5rem !important;
+  }
+  
+  /* Reducir tamaño de fuentes para ahorrar espacio */
+  body {
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+    color: #000 !important;
+    background: white !important;
+  }
+  
+  h1 {
+    font-size: 18pt !important;
+    margin: 0.5rem 0 !important;
+  }
+  
+  h2 {
+    font-size: 16pt !important;
+    margin: 0.4rem 0 !important;
+  }
+  
+  h3 {
+    font-size: 14pt !important;
+    margin: 0.3rem 0 !important;
+  }
+  
+  p, li {
+    font-size: 11pt !important;
+    margin: 0.2rem 0 !important;
+  }
+  
+  /* Asegurar que los enlaces sean visibles y clickeables en PDF */
+  a {
+    color: #0000EE !important;
+    text-decoration: underline !important;
+  }
+  
+  /* Asegurar que los fondos se impriman */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  /* Optimizar tarjetas de proyecto */
+  .project-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 0.5rem !important;
+    padding: 0.5rem !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+  }
+  
+  /* Reducir tamaño de imágenes en PDF */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 200px !important;
+  }
+  
+  /* Mejorar visualización de habilidades */
+  .skills-container {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
+    gap: 0.5rem !important;
+  }
+  
+  .skill-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding: 0.25rem !important;
+    margin: 0.1rem !important;
+    font-size: 10pt !important;
+  }
+}
+
+/* Estilos para modo preparación de impresión */
+.print-mode .main-nav,
+.print-mode .download-buttons, 
+.print-mode .language-switcher,
+.print-mode footer,
+.print-mode .contact-form,
+.print-mode .app-header {
+  display: none !important;
+}
+
+.print-mode {
+  background: white !important;
+}
+
+.print-mode .hero-section, 
+.print-mode .about-section, 
+.print-mode .projects-section, 
+.print-mode .skills-section, 
+.print-mode .contact-section {
+  margin: 0.5rem 0 !important;
+  padding: 0.5rem !important;
+}
+
+.print-mode a {
+  color: #0000EE !important;
+  text-decoration: underline !important;
+}

@@ -1,0 +1,64 @@
+{
+  "hero": {
+    "title": "Desarrollador Full-Stack",
+    "description": "Especializado en arquitecturas JavaScript (React, Node.js) y PHP (Laravel). Desarrollo soluciones completas desde el frontend interactivo hasta APIs robustas, con especial enfoque en accesibilidad.",
+    "cta": "Ver proyectos Full-Stack",
+    "techs": ["React", "Node.js", "Laravel", "Accesibilidad"]
+  },
+  "about": {
+    "title": "Sobre mí",
+    "sections": {
+      "history": {
+        "title": "Mi historia",
+        "content": "Soy Julián López Castillo, estudiante de Ingeniería Informática en la Universidad Nacional Experimental de Guayana (UNEG). Como persona con discapacidad motora, tengo un especial interés en el desarrollo de tecnologías accesibles."
+      },
+      "environment": {
+        "title": "Entorno de trabajo",
+        "content": "Desarrollo mis proyectos en Visual Studio Code con configuraciones personalizadas para eficiencia y accesibilidad, utilizando extensiones como ESLint, Prettier y herramientas para WCAG. Mi entorno está optimizado para productividad en desarrollo Full-Stack."
+      },
+      "focus": {
+        "title": "Enfoque profesional",
+        "content": "Desarrollador Full-Stack especializado en soluciones JavaScript (React, Node.js) y PHP (Laravel). Combino mis conocimientos técnicos con mi perspectiva única sobre accesibilidad digital."
+      },
+      "skills": {
+        "title": "Habilidades clave",
+        "items": ["React.js / Next.js", "Node.js / Express", "PHP / Laravel", "Accesibilidad WCAG", "Git y control de versiones", "Desarrollo ágil"]
+      }
+    }
+  },
+  "projects": {
+    "title": "Mis proyectos",
+    "subtitle": "Algunos de mis trabajos recientes",
+    "viewCode": "Ver código",
+    "viewDemo": "Ver demo",
+    "projectsList": {
+      "eduneg": {
+        "title": "Eduneg",
+        "description": "Aplicación para gestión de materias con interfaz intuitiva y diseño responsivo."
+      },
+      "accountModule": {
+        "title": "Módulo de movimiento de cuentas",
+        "description": "Módulo para gestionar el movimiento de cuentas en una aplicación de gestión con transacciones seguras."
+      }
+    }
+  },
+  "skills": {
+    "title": "Dominio Full-stack",
+    "subtitle": "Tecnologías que domino tanto en frontend como backend",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Bases de datos",
+      "devops": "DevOps y herramientas"
+    }
+  },
+  "contact": {
+    "title": "Contáctame",
+    "subtitle": "Estoy disponible por estos medios directos:",
+    "whatsapp": "WhatsApp/Teléfono",
+    "email": "Correo electrónico",
+    "github": "GitHub",
+    "clickMessage": "Haz clic para enviar un mensaje directo",
+    "whatsappMessage": "Hola Julián, vi tu portafolio y me gustaría contactarte"
+  }
+}
