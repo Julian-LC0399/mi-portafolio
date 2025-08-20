@@ -43,6 +43,12 @@
   transform: translateY(0);
 }
 
+.download-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
 /* Efecto de pulso para llamar la atención */
 @keyframes pulse {
   0% { transform: scale(1); }
@@ -75,18 +81,23 @@
   .download-buttons {
     bottom: 90px;
     right: 8px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .download-btn {
     padding: 8px 14px;
     font-size: 11px;
+    flex: 1;
+    min-width: 120px;
   }
 }
 
 /* ===== ESTILOS OPTIMIZADOS PARA IMPRESIÓN Y PDF - CORREGIDOS ===== */
 @media print {
   @page {
-    margin: 0.5in; /* Aumentado de 0.25in para mejor espaciado */
+    margin: 0.5in;
     size: portrait;
   }
   
@@ -135,33 +146,33 @@
   
   /* Reducir tamaño de fuentes para ahorrar espacio pero mantener legibilidad */
   body {
-    font-size: 12pt !important; /* Aumentado de 11pt */
-    line-height: 1.5 !important; /* Aumentado de 1.4 */
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
     color: #000 !important;
     background: white !important;
   }
   
   h1 {
-    font-size: 20pt !important; /* Aumentado de 18pt */
-    margin: 0.75rem 0 !important; /* Aumentado de 0.5rem */
+    font-size: 20pt !important;
+    margin: 0.75rem 0 !important;
     page-break-after: avoid;
   }
   
   h2 {
     font-size: 16pt !important;
-    margin: 0.6rem 0 !important; /* Aumentado de 0.4rem */
+    margin: 0.6rem 0 !important;
     page-break-after: avoid;
   }
   
   h3 {
     font-size: 14pt !important;
-    margin: 0.5rem 0 !important; /* Aumentado de 0.3rem */
+    margin: 0.5rem 0 !important;
     page-break-after: avoid;
   }
   
   p, li {
-    font-size: 12pt !important; /* Aumentado de 11pt */
-    margin: 0.4rem 0 !important; /* Aumentado de 0.2rem */
+    font-size: 12pt !important;
+    margin: 0.4rem 0 !important;
     line-height: 1.5;
   }
   
@@ -174,14 +185,11 @@
     margin-bottom: 0.25rem;
   }
   
-  /* Asegurar que los enlaces sean visibles y clickeables en PDF */
+  /* Asegurar que los enlaces sean visibles */
   a {
     color: #0000EE !important;
     text-decoration: underline !important;
   }
-  
-  /* ELIMINADO: Añadir URLs después de los enlaces para impresión */
-  /* Esta regla ha sido eliminada según la solicitud */
   
   /* Asegurar que los fondos se impriman */
   * {
@@ -194,8 +202,8 @@
   .card {
     break-inside: avoid;
     page-break-inside: avoid;
-    margin-bottom: 1rem !important; /* Aumentado de 0.5rem */
-    padding: 1rem !important; /* Aumentado de 0.5rem */
+    margin-bottom: 1rem !important;
+    padding: 1rem !important;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
     border: 1px solid #eee !important;
   }
@@ -204,23 +212,23 @@
   img {
     max-width: 100% !important;
     height: auto !important;
-    max-height: 250px !important; /* Aumentado de 200px */
+    max-height: 250px !important;
     page-break-inside: avoid;
   }
   
   /* Mejorar visualización de habilidades */
   .skills-container {
     display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; /* Aumentado de 120px */
-    gap: 0.75rem !important; /* Aumentado de 0.5rem */
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+    gap: 0.75rem !important;
   }
   
   .skill-item {
     break-inside: avoid;
     page-break-inside: avoid;
-    padding: 0.5rem !important; /* Aumentado de 0.25rem */
-    margin: 0.2rem !important; /* Aumentado de 0.1rem */
-    font-size: 11pt !important; /* Aumentado de 10pt */
+    padding: 0.5rem !important;
+    margin: 0.2rem !important;
+    font-size: 11pt !important;
     border: 1px solid #ddd !important;
   }
   
@@ -266,4 +274,131 @@
 .print-mode a {
   color: #0000EE !important;
   text-decoration: underline !important;
+}
+
+/* ===== NUEVOS ESTILOS PARA COMPATIBILIDAD CON html2canvas + jsPDF ===== */
+
+/* Contenedor principal para la captura de PDF */
+#portfolio-content {
+  width: 100% !important;
+  position: relative;
+}
+
+/* Mejorar la renderización de fuentes para captura */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Asegurar que las imágenes se carguen correctamente para la captura */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Estilos para la superposición de carga de PDF */
+.pdf-generating-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: white;
+  font-size: 1.2rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.pdf-generating-spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Modo de captura para html2canvas */
+.pdf-capture-mode {
+  overflow: visible !important;
+  height: auto !important;
+}
+
+.pdf-capture-mode .no-pdf {
+  display: none !important;
+}
+
+/* Forzar visibilidad de todos los proyectos durante la captura */
+.pdf-capture-mode .project-card,
+.pdf-capture-mode .project-item,
+.pdf-capture-mode .project {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* Mejorar la captura de elementos con posición fixed o absolute */
+.pdf-capture-mode .fixed-element,
+.pdf-capture-mode .absolute-element {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+}
+
+/* Asegurar que los iframes y elementos embebidos no causen problemas */
+iframe, embed, object {
+  display: none !important;
+}
+
+/* Mejorar la captura de elementos SVG */
+svg {
+  shape-rendering: geometricPrecision;
+}
+
+/* Prevenir problemas de renderizado con elementos específicos */
+.pdf-capture-mode .card, 
+.pdf-capture-mode .project-card, 
+.pdf-capture-mode .skill-item {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  transform: none !important;
+}
+
+/* Asegurar que las animaciones no interfieran con la captura */
+.pdf-capture-mode * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Media queries específicas para captura de PDF */
+@media screen and (max-width: 1200px) {
+  .pdf-capture-mode .responsive-element {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+/* Estilos para elementos lazy-loaded */
+.lazy-load {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Forzar la visualización de todos los proyectos */
+.project-card, .project-item, .project {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
