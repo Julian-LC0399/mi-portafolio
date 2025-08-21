@@ -1,42 +1,44 @@
 .download-buttons {
   position: fixed;
-  bottom: 120px;
+  bottom: 20px;
   right: 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   z-index: 1000;
 }
 
 .download-btn {
-  padding: 12px 20px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 25px;
+  border-radius: 20px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  font-size: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  font-size: 12px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  border: 2px solid transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-width: auto;
+  white-space: nowrap;
 }
 
 .download-btn.spanish {
-  background: linear-gradient(135deg, #007bff, #00bfff);
+  background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
 }
 
 .download-btn.english {
-  background: linear-gradient(135deg, #28a745, #20c997);
+  background: linear-gradient(135deg, #28a745, #1e7e34);
   color: white;
 }
 
 .download-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .download-btn:active {
@@ -44,53 +46,147 @@
 }
 
 .download-btn:disabled {
-  opacity: 0.7;
+  opacity: 0.6;
   cursor: not-allowed;
   transform: none;
 }
 
-/* Efecto de pulso para llamar la atención */
-@keyframes pulse {
+/* Efecto de pulso más sutil */
+@keyframes subtle-pulse {
   0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  50% { transform: scale(1.02); }
   100% { transform: scale(1); }
 }
 
 .download-btn {
-  animation: pulse 2s ease-in-out infinite;
+  animation: subtle-pulse 3s ease-in-out infinite;
 }
 
 .download-btn:hover {
   animation: none;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Iconos más pequeños */
+.download-btn::before {
+  content: '📄';
+  margin-right: 6px;
+  font-size: 11px;
+}
+
+/* Responsive para tablets */
+@media (max-width: 1024px) {
   .download-buttons {
-    bottom: 100px;
-    right: 10px;
+    bottom: 15px;
+    right: 15px;
+    gap: 6px;
   }
   
   .download-btn {
-    padding: 10px 16px;
-    font-size: 12px;
+    padding: 7px 14px;
+    font-size: 11px;
+    border-radius: 18px;
+  }
+  
+  .download-btn::before {
+    margin-right: 5px;
+    font-size: 10px;
   }
 }
 
-@media (max-width: 480px) {
+/* Responsive para móviles */
+@media (max-width: 768px) {
   .download-buttons {
-    bottom: 90px;
-    right: 8px;
+    position: fixed;
+    bottom: 15px;
+    right: 50%;
+    transform: translateX(50%);
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 8px;
+    width: auto;
+    max-width: 90%;
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    padding: 6px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
   
   .download-btn {
-    padding: 8px 14px;
+    padding: 8px 12px;
     font-size: 11px;
+    border-radius: 18px;
     flex: 1;
-    min-width: 120px;
+    min-width: 0;
+    text-align: center;
+  }
+  
+  .download-btn::before {
+    margin-right: 4px;
+    font-size: 10px;
+  }
+  
+  /* Ocultar texto largo en móviles muy pequeños */
+  @media (max-width: 380px) {
+    .download-btn {
+      font-size: 0;
+      padding: 10px;
+    }
+    
+    .download-btn::before {
+      margin-right: 0;
+      font-size: 12px;
+    }
+    
+    .download-btn::after {
+      content: '';
+      display: none;
+    }
+  }
+}
+
+/* Responsive para móviles muy pequeños */
+@media (max-width: 340px) {
+  .download-buttons {
+    bottom: 10px;
+    padding: 5px;
+    gap: 5px;
+  }
+  
+  .download-btn {
+    padding: 8px 10px;
+    font-size: 10px;
+  }
+}
+
+/* Mejoras para modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .download-buttons {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .download-btn {
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Estados de focus para accesibilidad */
+.download-btn:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* Mejora de rendimiento para animaciones */
+@media (prefers-reduced-motion: reduce) {
+  .download-btn {
+    animation: none;
+    transition: none;
+  }
+  
+  .download-btn:hover {
+    transform: none;
   }
 }
 
