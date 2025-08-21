@@ -6,8 +6,6 @@ import '../styles/download-buttons.css';
 const DownloadButtons = () => {
   const [isGenerating, setIsGenerating] = useState(false);
 
-  // (smoothScrollTo function removed because it was unused)
-
   // Función para asegurar que todas las imágenes estén cargadas
   const waitForImages = () => {
     const images = document.querySelectorAll('img');
@@ -19,6 +17,16 @@ const DownloadButtons = () => {
       });
     });
     return Promise.all(promises);
+  };
+
+  // Función de restauración de emergencia
+  const restoreAllElements = () => {
+    const allElements = document.querySelectorAll('*');
+    allElements.forEach(el => {
+      if (el.style.display === 'none') el.style.display = '';
+      if (el.style.visibility === 'hidden') el.style.visibility = '';
+    });
+    document.body.classList.remove('pdf-capture-mode');
   };
 
   const generateHighQualityPDF = async (lang) => {
@@ -42,28 +50,30 @@ const DownloadButtons = () => {
       // 4. Esperar a que todas las imágenes se carguen
       await waitForImages();
       
-      // 5. Ocultar elementos no deseados
+      // 5. Ocultar elementos no deseados - CORREGIDO
       const elementsToHide = document.querySelectorAll(
-        '.no-pdf, .main-nav, .download-buttons, .language-switcher, footer, .contact-form, .app-header'
+        '.no-pdf, .main-nav, .download-buttons, .language-switcher, footer, .contact-form, .app-header, button[aria-label*="PDF"], button[aria-label*="Download"], button[aria-label*="Descargar"]'
       );
       
-      const originalStyles = [];
+      const originalStyles = new Map(); // Usar Map para mejor performance
       elementsToHide.forEach(el => {
-        originalStyles.push({
-          element: el,
-          display: el.style.display
+        // Guardar el valor ORIGINAL, no el actual
+        originalStyles.set(el, {
+          display: window.getComputedStyle(el).display,
+          visibility: window.getComputedStyle(el).visibility
         });
         el.style.display = 'none';
+        el.style.visibility = 'hidden';
       });
       
       // 6. Añadir clase especial para la captura
       document.body.classList.add('pdf-capture-mode');
       
-      // 7. Scroll al inicio para asegurar que todo el contenido esté renderizado
+      // 7. Scroll al inicio
       window.scrollTo(0, 0);
       await new Promise(resolve => setTimeout(resolve, 300));
       
-      // 8. Configuración de html2canvas para máxima calidad
+      // 8. Configuración de html2canvas
       const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
@@ -75,11 +85,9 @@ const DownloadButtons = () => {
         windowWidth: document.documentElement.scrollWidth,
         windowHeight: document.documentElement.scrollHeight,
         onclone: (clonedDoc) => {
-          // Asegurar que todos los estilos se apliquen correctamente
           clonedDoc.body.style.width = '100%';
           clonedDoc.body.style.overflow = 'visible';
           
-          // Forzar la visualización de todos los proyectos
           const projects = clonedDoc.querySelectorAll('.project-card, .project-item');
           projects.forEach(project => {
             project.style.display = 'block';
@@ -89,11 +97,16 @@ const DownloadButtons = () => {
         }
       });
       
-      // 9. Restaurar elementos ocultos
+      // 9. RESTAURACIÓN CORREGIDA
       elementsToHide.forEach(el => {
-        const originalStyle = originalStyles.find(style => style.element === el);
+        const originalStyle = originalStyles.get(el);
         if (originalStyle) {
           el.style.display = originalStyle.display;
+          el.style.visibility = originalStyle.visibility;
+        } else {
+          // Fallback: restaurar valores por defecto
+          el.style.display = '';
+          el.style.visibility = '';
         }
       });
       
@@ -103,7 +116,7 @@ const DownloadButtons = () => {
       // 11. Restaurar posición de scroll
       window.scrollTo(0, originalScrollPosition);
       
-      // 12. Crear PDF con la imagen
+      // 12. Crear PDF
       const imgData = canvas.toDataURL('image/jpeg', 0.95);
       const pdf = new jsPDF({
         orientation: 'portrait',
@@ -113,15 +126,12 @@ const DownloadButtons = () => {
       
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = pdf.internal.pageSize.getHeight();
-      
-      // Calcular relación de aspecto para la imagen
       const imgWidth = canvas.width;
       const imgHeight = canvas.height;
       const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
       const imgX = (pdfWidth - imgWidth * ratio) / 2;
       const imgY = 0;
       
-      // Añadir imagen al PDF
       pdf.addImage(
         imgData, 
         'JPEG', 
@@ -131,14 +141,18 @@ const DownloadButtons = () => {
         imgHeight * ratio
       );
       
-      // Guardar PDF
       pdf.save(`portfolio-${lang}-${new Date().toISOString().split('T')[0]}.pdf`);
       
     } catch (error) {
       console.error('Error generating PDF:', error);
-      // Fallback a impresión estándar
+      
+      // RESTAURACIÓN INCLUSO EN CASO DE ERROR
+      restoreAllElements();
+      
       window.print();
     } finally {
+      // Limpieza final garantizada
+      restoreAllElements();
       setIsGenerating(false);
     }
   };
