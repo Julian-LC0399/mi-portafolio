@@ -226,10 +226,27 @@
   .skill-item {
     break-inside: avoid;
     page-break-inside: avoid;
-    padding: 0.5rem !important;
+    padding: 0.8rem 0.6rem !important;
     margin: 0.2rem !important;
-    font-size: 11pt !important;
+    font-size: 10pt !important;
     border: 1px solid #ddd !important;
+    background: white !important;
+    min-height: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    color: #333 !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+  }
+  
+  /* Asegurar que el texto no se desborde */
+  .skill-item span {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   
   /* Mejorar tablas para impresión */
@@ -401,4 +418,192 @@ svg {
 .project-card, .project-item, .project {
   opacity: 1 !important;
   visibility: visible !important;
+}
+
+/* ===== ESTILOS MEJORADOS PARA LA SECCIÓN DE HERRAMIENTAS ===== */
+
+/* Contenedor principal de habilidades */
+.skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+/* Items de habilidad - Sin fondo azul */
+.skill-item {
+  background: white;
+  color: #333;
+  padding: 1.2rem 1rem;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Efecto hover para items de habilidad */
+.skill-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border-color: #007bff;
+}
+
+/* Asegurar que el texto no se desborde */
+.skill-item span {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Contenedores específicos para categorías */
+.skills-frontend,
+.skills-backend,
+.skills-database,
+.skills-devops {
+  margin-bottom: 2.5rem;
+}
+
+/* Títulos de categorías */
+.skills-category-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: #2c3e50;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #007bff;
+  display: inline-block;
+}
+
+/* Mejorar el espaciado general de la sección */
+.skills-section {
+  padding: 2.5rem 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 15px;
+  margin: 2rem 0;
+}
+
+/* Estilos para impresión - Ajustados */
+@media print {
+  .skills-container {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+    gap: 0.8rem !important;
+  }
+  
+  .skill-item {
+    padding: 0.8rem 0.5rem !important;
+    font-size: 10pt !important;
+    min-height: 60px !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    border: 1px solid #ddd !important;
+    background: white !important;
+    color: #333 !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+  }
+  
+  .skills-section {
+    background: none !important;
+    padding: 1rem 0 !important;
+    margin: 1rem 0 !important;
+  }
+  
+  .skills-category-title {
+    font-size: 14pt !important;
+    border-bottom: 1px solid #007bff !important;
+  }
+}
+
+/* Responsive para dispositivos móviles */
+@media (max-width: 768px) {
+  .skills-container {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0.8rem;
+  }
+  
+  .skill-item {
+    padding: 1rem 0.8rem;
+    font-size: 0.9rem;
+    min-height: 70px;
+  }
+  
+  .skills-category-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .skill-item {
+    padding: 0.9rem 0.5rem;
+    font-size: 0.85rem;
+    min-height: 65px;
+  }
+  
+  .skills-section {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Estilos para modo de captura de PDF */
+.pdf-capture-mode .skills-container {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+  gap: 1rem !important;
+}
+
+.pdf-capture-mode .skill-item {
+  padding: 1.2rem 1rem !important;
+  font-size: 1rem !important;
+  min-height: 80px !important;
+  background: white !important;
+  border: 1px solid #e9ecef !important;
+  color: #333 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Clases utilitarias para ajustes específicos */
+.text-adjust {
+  font-size: 0.95em;
+  letter-spacing: -0.02em;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Mejora visual para elementos de tecnología */
+.tech-badge {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+  color: #495057;
+  margin: 0.15rem;
 }
