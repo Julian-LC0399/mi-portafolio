@@ -133,15 +133,16 @@
     font-size: 10px;
   }
 
-  /* Ocultar texto largo en móviles muy pequeños */
+  /* Ocultar texto largo en móviles muy pequeños - MODIFICADO */
   @media (max-width: 380px) {
     .download-btn {
-      font-size: 0;
-      padding: 10px;
+      /* ELIMINADO: font-size: 0; - Esta línea ocultaba el texto */
+      font-size: 10px !important; /* Tamaño de fuente reducido pero visible */
+      padding: 10px 8px; /* Padding ajustado */
     }
 
     .download-btn::before {
-      margin-right: 0;
+      margin-right: 3px;
       font-size: 12px;
     }
 
