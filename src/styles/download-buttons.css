@@ -72,13 +72,6 @@
   animation: none;
 }
 
-/* Iconos más pequeños */
-.download-btn::before {
-  content: "📄";
-  margin-right: 6px;
-  font-size: 11px;
-}
-
 /* Responsive para tablets */
 @media (max-width: 1024px) {
   .download-buttons {
