@@ -1,10 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import '../styles/download-buttons.css';
 
 const DownloadButtons = () => {
   const [isGenerating, setIsGenerating] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState(
+    localStorage.getItem('language') || 'es'
+  );
+
+  // Efecto para detectar cambios de idioma
+  useEffect(() => {
+    // Función para manejar el cambio de idioma
+    const handleLanguageChange = (event) => {
+      setCurrentLanguage(event.detail);
+    };
+    
+    // Escuchar eventos personalizados de cambio de idioma
+    window.addEventListener('languageChange', handleLanguageChange);
+    
+    // También escuchar cambios en localStorage
+    const handleStorageChange = (e) => {
+      if (e.key === 'language') {
+        setCurrentLanguage(e.newValue || 'es');
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Verificar periódicamente si el idioma ha cambiado (como fallback)
+    const intervalId = setInterval(() => {
+      const lang = localStorage.getItem('language') || 'es';
+      if (lang !== currentLanguage) {
+        setCurrentLanguage(lang);
+      }
+    }, 1000);
+    
+    return () => {
+      window.removeEventListener('languageChange', handleLanguageChange);
+      window.removeEventListener('storage', handleStorageChange);
+      clearInterval(intervalId);
+    };
+  }, [currentLanguage]);
 
   // Función para asegurar que todas las imágenes estén cargadas
   const waitForImages = () => {
@@ -13,7 +50,7 @@ const DownloadButtons = () => {
       if (img.complete) return Promise.resolve();
       return new Promise(resolve => {
         img.onload = resolve;
-        img.onerror = resolve; // Continuar incluso si hay error en alguna imagen
+        img.onerror = resolve;
       });
     });
     return Promise.all(promises);
@@ -38,26 +75,23 @@ const DownloadButtons = () => {
       if (currentLang !== lang) {
         const event = new CustomEvent('languageChange', { detail: lang });
         window.dispatchEvent(event);
+        // Actualizar también el estado local inmediatamente
+        setCurrentLanguage(lang);
         await new Promise(resolve => setTimeout(resolve, 800));
       }
       
-      // 2. Guardar la posición actual de scroll
+      // Resto del código sin cambios...
       const originalScrollPosition = window.pageYOffset;
-      
-      // 3. Obtener el elemento a capturar
       const element = document.getElementById('portfolio-content') || document.body;
       
-      // 4. Esperar a que todas las imágenes se carguen
       await waitForImages();
       
-      // 5. Ocultar elementos no deseados - CORREGIDO
       const elementsToHide = document.querySelectorAll(
         '.no-pdf, .main-nav, .download-buttons, .language-switcher, footer, .contact-form, .app-header, button[aria-label*="PDF"], button[aria-label*="Download"], button[aria-label*="Descargar"]'
       );
       
-      const originalStyles = new Map(); // Usar Map para mejor performance
+      const originalStyles = new Map();
       elementsToHide.forEach(el => {
-        // Guardar el valor ORIGINAL, no el actual
         originalStyles.set(el, {
           display: window.getComputedStyle(el).display,
           visibility: window.getComputedStyle(el).visibility
@@ -66,14 +100,10 @@ const DownloadButtons = () => {
         el.style.visibility = 'hidden';
       });
       
-      // 6. Añadir clase especial para la captura
       document.body.classList.add('pdf-capture-mode');
-      
-      // 7. Scroll al inicio
       window.scrollTo(0, 0);
       await new Promise(resolve => setTimeout(resolve, 300));
       
-      // 8. Configuración de html2canvas
       const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
@@ -97,26 +127,20 @@ const DownloadButtons = () => {
         }
       });
       
-      // 9. RESTAURACIÓN CORREGIDA
       elementsToHide.forEach(el => {
         const originalStyle = originalStyles.get(el);
         if (originalStyle) {
           el.style.display = originalStyle.display;
           el.style.visibility = originalStyle.visibility;
         } else {
-          // Fallback: restaurar valores por defecto
           el.style.display = '';
           el.style.visibility = '';
         }
       });
       
-      // 10. Remover clase de captura
       document.body.classList.remove('pdf-capture-mode');
-      
-      // 11. Restaurar posición de scroll
       window.scrollTo(0, originalScrollPosition);
       
-      // 12. Crear PDF
       const imgData = canvas.toDataURL('image/jpeg', 0.95);
       const pdf = new jsPDF({
         orientation: 'portrait',
@@ -145,13 +169,9 @@ const DownloadButtons = () => {
       
     } catch (error) {
       console.error('Error generating PDF:', error);
-      
-      // RESTAURACIÓN INCLUSO EN CASO DE ERROR
       restoreAllElements();
-      
       window.print();
     } finally {
-      // Limpieza final garantizada
       restoreAllElements();
       setIsGenerating(false);
     }
@@ -162,26 +182,29 @@ const DownloadButtons = () => {
       {isGenerating && (
         <div className="pdf-generating-overlay">
           <div className="pdf-generating-spinner"></div>
-          <p>Generando PDF, por favor espere...</p>
+          <p>
+            {currentLanguage === 'es' 
+              ? 'Generando PDF, por favor espere...' 
+              : 'Generating PDF, please wait...'
+            }
+          </p>
         </div>
       )}
       
       <button 
-        onClick={() => generateHighQualityPDF('es')}
-        className="download-btn spanish"
+        onClick={() => generateHighQualityPDF(currentLanguage)}
+        className={`download-btn ${currentLanguage === 'es' ? 'spanish' : 'english'}`}
         disabled={isGenerating}
-        aria-label="Descargar PDF en español"
+        aria-label={
+          currentLanguage === 'es' 
+            ? 'Descargar PDF en español' 
+            : 'Download PDF in English'
+        }
       >
-        {isGenerating ? '⏳ Generando...' : '📄 Descargar CV (ES)'}
-      </button>
-      
-      <button 
-        onClick={() => generateHighQualityPDF('en')}
-        className="download-btn english"
-        disabled={isGenerating}
-        aria-label="Download PDF in English"
-      >
-        {isGenerating ? '⏳ Generating...' : '📄 Download CV (EN)'}
+        {isGenerating 
+          ? (currentLanguage === 'es' ? '⏳ Generando...' : '⏳ Generating...')
+          : (currentLanguage === 'es' ? '📄 Descargar CV (ES)' : '📄 Download CV (EN)')
+        }
       </button>
     </div>
   );
