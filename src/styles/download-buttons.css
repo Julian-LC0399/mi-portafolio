@@ -23,6 +23,12 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   min-width: auto;
   white-space: nowrap;
+  /* Mejoras añadidas para texto en móviles */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
 }
 
 .download-btn.spanish {
@@ -84,6 +90,7 @@
     padding: 7px 14px;
     font-size: 11px;
     border-radius: 18px;
+    min-height: 40px;
   }
 
   .download-btn::before {
@@ -113,12 +120,16 @@
   }
 
   .download-btn {
-    padding: 8px 12px;
-    font-size: 11px;
+    padding: 10px 12px;
+    font-size: 12px;
     border-radius: 18px;
     flex: 1;
     min-width: 0;
     text-align: center;
+    min-height: 44px;
+    white-space: normal;
+    line-height: 1.3;
+    word-break: break-word;
   }
 
   .download-btn::before {
@@ -130,8 +141,19 @@
   @media (max-width: 380px) {
     .download-btn {
       /* ELIMINADO: font-size: 0; - Esta línea ocultaba el texto */
-      font-size: 10px !important; /* Tamaño de fuente reducido pero visible */
+      font-size: 11px !important; /* Tamaño de fuente reducido pero visible */
       padding: 10px 8px; /* Padding ajustado */
+      line-height: 1.2;
+    }
+    
+    /* Asegurar que el texto no desborde */
+    .download-btn span {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .download-btn::before {
@@ -157,6 +179,7 @@
   .download-btn {
     padding: 8px 10px;
     font-size: 10px;
+    min-height: 40px;
   }
 }
 
@@ -678,7 +701,7 @@ svg {
   background: white !important;
   border: 1px solid #e9ecef !important;
   color: #333 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 极 4px 12px rgba(0, 0, 0, 0.08) !important;
 }
 
 /* Clases utilitarias para ajustes específicos */
@@ -725,7 +748,7 @@ svg {
 
   .download-btn:active {
     transform: scale(0.97);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 极 2px 5px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -749,7 +772,7 @@ svg {
 }
 
 /* Mejoras de rendimiento para móviles durante la captura */
-@media (max-width: 768px) {
+@media (极-width: 768px) {
   .pdf-capture-mode {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -771,14 +794,14 @@ svg {
   bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 极, 0.8);
   color: white;
   padding: 10px 20px;
   border-radius: 20px;
   font-size: 14px;
   z-index: 1001;
   -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(极0px);
   animation: fadeInOut 2s ease-in-out infinite;
   display: none;
 }
@@ -822,7 +845,7 @@ svg {
   }
 
   .skills-container {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, 1极r) !important;
   }
 
   .skill-item {
