@@ -172,7 +172,7 @@ const DownloadButtons = () => {
         disabled={isGenerating}
         aria-label="Descargar PDF en español"
       >
-        {isGenerating ? '⏳ Generando...' : '📄 Descargar PDF (ES)'}
+        {isGenerating ? '⏳ Generando...' : '📄 Descargar CV (ES)'}
       </button>
       
       <button 
@@ -181,7 +181,7 @@ const DownloadButtons = () => {
         disabled={isGenerating}
         aria-label="Download PDF in English"
       >
-        {isGenerating ? '⏳ Generating...' : '📄 Download PDF (EN)'}
+        {isGenerating ? '⏳ Generating...' : '📄 Download CV (EN)'}
       </button>
     </div>
   );

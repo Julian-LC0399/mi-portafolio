@@ -99,13 +99,13 @@
   }
 }
 
-/* Responsive para móviles */
+/* Responsive para móviles - CORREGIDO */
 @media (max-width: 768px) {
   .download-buttons {
     position: fixed;
     bottom: 15px;
-    right: 50%;
-    transform: translateX(50%);
+    left: 50%; /* Cambiado de right a left */
+    transform: translateX(-50%); /* Negativo para centrar correctamente */
     flex-direction: row;
     gap: 8px;
     width: auto;
@@ -745,10 +745,6 @@ svg {
 /* Mejoras para la captura de PDF en móviles */
 .pdf-capture-mode {
   width: 100% !important;
-}
-
-.pdf-capture-mode .no-pdf {
-  visibility: hidden !important;
 }
 
 /* Asegurar que los iframes y elementos embebidos no causen problemas */
