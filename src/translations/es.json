@@ -2,7 +2,6 @@
   "hero": {
     "title": "Desarrollador Full-Stack",
     "description": "Especializado en arquitecturas JavaScript (React, Node.js) y PHP (Laravel). Desarrollo soluciones completas desde el frontend interactivo hasta APIs robustas, con especial enfoque en accesibilidad.",
-    "cta": "Ver proyectos Full-Stack",
     "techs": ["React", "Node.js", "Laravel", "Accesibilidad"]
   },
   "about": {
@@ -22,7 +21,14 @@
       },
       "skills": {
         "title": "Habilidades clave",
-        "items": ["React.js / Next.js", "Node.js / Express", "PHP / Laravel", "Accesibilidad WCAG", "Git y control de versiones", "Desarrollo ágil"]
+        "items": [
+          "React.js / Next.js",
+          "Node.js / Express",
+          "PHP / Laravel",
+          "Accesibilidad WCAG",
+          "Git y control de versiones",
+          "Desarrollo ágil"
+        ]
       }
     }
   },
