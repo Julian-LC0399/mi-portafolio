@@ -15,7 +15,9 @@ import {
   SiGithub, 
   SiReact,
   SiTailwindcss,
-  SiBootstrap
+  SiBootstrap,
+  SiPython,
+  SiStreamlit
 } from 'react-icons/si';
 import { useTranslation } from '../hooks/useTranslation';
 
@@ -38,6 +40,8 @@ const Skills = () => {
       skills: [
         { name: "Node.js/Express", icon: <FaNodeJs /> },
         { name: "PHP/Laravel", icon: <SiLaravel /> },
+        { name: "Python", icon: <SiPython /> },
+        { name: "Streamlit", icon: <SiStreamlit /> },
         { name: "XAMPP/PhpMyAdmin", icon: <SiXampp /> }
       ]
     },

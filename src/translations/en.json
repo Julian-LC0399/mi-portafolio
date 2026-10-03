@@ -37,14 +37,22 @@
     "subtitle": "Some of my recent works",
     "viewCode": "View code",
     "viewDemo": "View demo",
+    "context": {
+      "Internship": "Internship",
+      "DegreeProject": "Degree Project"
+    },
     "projectsList": {
       "eduneg": {
         "title": "Eduneg",
-        "description": "Application for subject management with intuitive interface and responsive design."
+        "description": "Academic management application with modern architecture, intuitive interface, and responsive design. Built with Next.js and Tailwind CSS."
       },
       "accountModule": {
         "title": "Account Movement Module",
-        "description": "Module to manage account movements in a management application with secure transactions."
+        "description": "Module developed during my professional internship for account movement management, featuring secure transactions and data validation."
+      },
+      "simpol": {
+        "title": "SIMPOL",
+        "description": "Intelligent permanent online monitoring system for critical physical and virtual servers. Centralizes real-time telemetry, generates automated alerts, and forecasts resource consumption through Capacity Planning models."
       }
     }
   },
