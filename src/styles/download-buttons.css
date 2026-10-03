@@ -1,3 +1,7 @@
+/* ============================================================
+   DOWNLOAD BUTTONS (PDF)
+   ============================================================ */
+
 .download-buttons {
   position: fixed;
   bottom: 20px;
@@ -21,14 +25,15 @@
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  min-width: auto;
   white-space: nowrap;
-  /* Mejoras añadidas para texto en móviles */
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 44px;
+  animation: subtle-pulse 3s ease-in-out infinite;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .download-btn.spanish {
@@ -45,6 +50,7 @@
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   border-color: rgba(255, 255, 255, 0.4);
+  animation: none;
 }
 
 .download-btn:active {
@@ -57,28 +63,53 @@
   transform: none;
 }
 
-/* Efecto de pulso más sutil */
+.download-btn:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
 @keyframes subtle-pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.02);
-  }
-  100% {
-    transform: scale(1);
-  }
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.02); }
+  100% { transform: scale(1); }
 }
 
-.download-btn {
-  animation: subtle-pulse 3s ease-in-out infinite;
+/* ============================================================
+   OVERLAY DE GENERACIÓN DE PDF
+   ============================================================ */
+.pdf-generating-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: white;
+  font-size: 1.2rem;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-.download-btn:hover {
-  animation: none;
+.pdf-generating-spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 20px;
 }
 
-/* Responsive para tablets */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (max-width: 1024px) {
   .download-buttons {
     bottom: 15px;
@@ -92,20 +123,14 @@
     border-radius: 18px;
     min-height: 40px;
   }
-
-  .download-btn::before {
-    margin-right: 5px;
-    font-size: 10px;
-  }
 }
 
-/* Responsive para móviles - CORREGIDO */
 @media (max-width: 768px) {
   .download-buttons {
-    position: fixed;
     bottom: 15px;
-    left: 50%; /* Cambiado de right a left */
-    transform: translateX(-50%); /* Negativo para centrar correctamente */
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
     flex-direction: row;
     gap: 8px;
     width: auto;
@@ -117,6 +142,10 @@
     padding: 6px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    touch-action: manipulation;
   }
 
   .download-btn {
@@ -124,51 +153,32 @@
     font-size: 12px;
     border-radius: 18px;
     flex: 1;
-    min-width: 0;
+    min-width: 44px;
     text-align: center;
     min-height: 44px;
     white-space: normal;
     line-height: 1.3;
     word-break: break-word;
   }
+}
 
-  .download-btn::before {
-    margin-right: 4px;
-    font-size: 10px;
+@media (max-width: 380px) {
+  .download-btn {
+    font-size: 11px !important;
+    padding: 10px 8px;
+    line-height: 1.2;
   }
 
-  /* Ocultar texto largo en móviles muy pequeños - MODIFICADO */
-  @media (max-width: 380px) {
-    .download-btn {
-      /* ELIMINADO: font-size: 0; - Esta línea ocultaba el texto */
-      font-size: 11px !important; /* Tamaño de fuente reducido pero visible */
-      padding: 10px 8px; /* Padding ajustado */
-      line-height: 1.2;
-    }
-    
-    /* Asegurar que el texto no desborde */
-    .download-btn span {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .download-btn::before {
-      margin-right: 3px;
-      font-size: 12px;
-    }
-
-    .download-btn::after {
-      content: "";
-      display: none;
-    }
+  .download-btn span {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
-/* Responsive para móviles muy pequeños */
 @media (max-width: 340px) {
   .download-buttons {
     bottom: 10px;
@@ -183,7 +193,9 @@
   }
 }
 
-/* Mejoras para modo oscuro */
+/* ============================================================
+   PREFERENCIAS DEL USUARIO
+   ============================================================ */
 @media (prefers-color-scheme: dark) {
   .download-buttons {
     background: rgba(0, 0, 0, 0.2);
@@ -195,13 +207,6 @@
   }
 }
 
-/* Estados de focus para accesibilidad */
-.download-btn:focus {
-  outline: 2px solid #007bff;
-  outline-offset: 2px;
-}
-
-/* Mejora de rendimiento para animaciones */
 @media (prefers-reduced-motion: reduce) {
   .download-btn {
     animation: none;
@@ -213,14 +218,83 @@
   }
 }
 
-/* ===== ESTILOS OPTIMIZADOS PARA IMPRESIÓN Y PDF - CORREGIDOS ===== */
+@media (hover: none) and (pointer: coarse) {
+  .download-btn:hover {
+    transform: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .download-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* ============================================================
+   MODO CAPTURA DE PDF (html2canvas)
+   ============================================================ */
+.pdf-capture-mode {
+  overflow: visible !important;
+  height: auto !important;
+  width: 100% !important;
+}
+
+.pdf-capture-mode .no-pdf {
+  display: none !important;
+}
+
+.pdf-capture-mode .project-card,
+.pdf-capture-mode .project-item,
+.pdf-capture-mode .project {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+.pdf-capture-mode .card,
+.pdf-capture-mode .project-card,
+.pdf-capture-mode .skill-item {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  transform: none !important;
+}
+
+.pdf-capture-mode * {
+  animation: none !important;
+  transition: none !important;
+}
+
+.pdf-capture-mode iframe,
+.pdf-capture-mode embed,
+.pdf-capture-mode object {
+  visibility: hidden !important;
+}
+
+@media (max-width: 768px) {
+  .pdf-capture-mode {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .pdf-capture-mode .skill-item {
+    padding: 1rem 0.8rem !important;
+    min-height: 70px !important;
+  }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
 @media print {
   @page {
     margin: 0.5in;
     size: portrait;
   }
 
-  /* Ocultar elementos no deseados en el PDF */
   .main-nav,
   .download-buttons,
   .language-switcher,
@@ -232,7 +306,6 @@
     display: none !important;
   }
 
-  /* Asegurar que el contenido ocupe todo el ancho disponible */
   body,
   .container,
   section {
@@ -243,7 +316,6 @@
     float: none !important;
   }
 
-  /* Optimizar espaciado para impresión */
   .hero-section,
   .about-section,
   .projects-section,
@@ -257,7 +329,6 @@
     width: 100% !important;
   }
 
-  /* Evitar que los elementos se corten entre páginas */
   .project-card,
   .skill-item,
   .card {
@@ -265,7 +336,6 @@
     page-break-inside: avoid;
   }
 
-  /* Reducir tamaño de fuentes para ahorrar espacio pero mantener legibilidad */
   body {
     font-size: 12pt !important;
     line-height: 1.5 !important;
@@ -273,54 +343,24 @@
     background: white !important;
   }
 
-  h1 {
-    font-size: 20pt !important;
-    margin: 0.75rem 0 !important;
-    page-break-after: avoid;
-  }
+  h1 { font-size: 20pt !important; margin: 0.75rem 0 !important; page-break-after: avoid; }
+  h2 { font-size: 16pt !important; margin: 0.6rem 0 !important; page-break-after: avoid; }
+  h3 { font-size: 14pt !important; margin: 0.5rem 0 !important; page-break-after: avoid; }
+  p, li { font-size: 12pt !important; margin: 0.4rem 0 !important; line-height: 1.5; }
 
-  h2 {
-    font-size: 16pt !important;
-    margin: 0.6rem 0 !important;
-    page-break-after: avoid;
-  }
+  ul, ol { padding-left: 1.5rem !important; }
+  li { margin-bottom: 0.25rem; }
 
-  h3 {
-    font-size: 14pt !important;
-    margin: 0.5rem 0 !important;
-    page-break-after: avoid;
-  }
-
-  p,
-  li {
-    font-size: 12pt !important;
-    margin: 0.4rem 0 !important;
-    line-height: 1.5;
-  }
-
-  /* Mejorar espaciado de listas */
-  ul,
-  ol {
-    padding-left: 1.5rem !important;
-  }
-
-  li {
-    margin-bottom: 0.25rem;
-  }
-
-  /* Asegurar que los enlaces sean visibles */
   a {
     color: #0000ee !important;
     text-decoration: underline !important;
   }
 
-  /* Asegurar que los fondos se impriman */
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  /* Optimizar tarjetas de proyecto */
   .project-card,
   .card {
     break-inside: avoid;
@@ -331,7 +371,6 @@
     border: 1px solid #eee !important;
   }
 
-  /* Reducir tamaño de imágenes en PDF pero mantener proporciones */
   img {
     max-width: 100% !important;
     height: auto !important;
@@ -339,7 +378,6 @@
     page-break-inside: avoid;
   }
 
-  /* Mejorar visualización de habilidades */
   .skills-container {
     display: grid !important;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
@@ -363,7 +401,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
   }
 
-  /* Asegurar que el texto no se desborde */
   .skill-item span {
     display: inline-block;
     max-width: 100%;
@@ -372,7 +409,6 @@
     white-space: nowrap;
   }
 
-  /* Mejorar tablas para impresión */
   table {
     page-break-inside: avoid;
     break-inside: avoid;
@@ -381,506 +417,5 @@
   tr {
     page-break-inside: avoid;
     break-inside: avoid;
-  }
-}
-
-/* Estilos para modo preparación de impresión */
-.print-mode .main-nav,
-.print-mode .download-buttons,
-.print-mode .language-switcher,
-.print-mode footer,
-.print-mode .contact-form,
-.print-mode .app-header,
-.print-mode .btn,
-.print-mode button {
-  display: none !important;
-}
-
-.print-mode {
-  background: white !important;
-  padding: 1rem !important;
-}
-
-.print-mode .hero-section,
-.print-mode .about-section,
-.print-mode .projects-section,
-.print-mode .skills-section,
-.print-mode .contact-section,
-.print-mode section {
-  margin: 1rem 0 !important;
-  padding: 0.5rem 0 !important;
-}
-
-.print-mode a {
-  color: #0000ee !important;
-  text-decoration: underline !important;
-}
-
-/* ===== NUEVOS ESTILOS PARA COMPATIBILIDAD CON html2canvas + jsPDF ===== */
-
-/* Contenedor principal para la captura de PDF */
-#portfolio-content {
-  width: 100% !important;
-  position: relative;
-}
-
-/* Mejorar la renderización de fuentes para captura */
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-/* Asegurar que las imágenes se carguen correctamente para la captura */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Estilos para la superposición de carga de PDF */
-.pdf-generating-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  color: white;
-  font-size: 1.2rem;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-.pdf-generating-spinner {
-  width: 60px;
-  height: 60px;
-  border: 5px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: #fff;
-  animation: spin 1s ease-in-out infinite;
-  margin-bottom: 20px;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Modo de captura para html2canvas */
-.pdf-capture-mode {
-  overflow: visible !important;
-  height: auto !important;
-}
-
-.pdf-capture-mode .no-pdf {
-  display: none !important;
-}
-
-/* Forzar visibilidad de todos los proyectos durante la captura */
-.pdf-capture-mode .project-card,
-.pdf-capture-mode .project-item,
-.pdf-capture-mode .project {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: none !important;
-}
-
-/* Mejorar la captura de elementos con posición fixed o absolute */
-.pdf-capture-mode .fixed-element,
-.pdf-capture-mode .absolute-element {
-  position: relative !important;
-  top: auto !important;
-  left: auto !important;
-}
-
-/* Asegurar que los iframes y elementos embebidos no causen problemas */
-iframe,
-embed,
-object {
-  display: none !important;
-}
-
-/* Mejorar la captura de elementos SVG */
-svg {
-  shape-rendering: geometricPrecision;
-}
-
-/* Prevenir problemas de renderizado con elementos específicos */
-.pdf-capture-mode .card,
-.pdf-capture-mode .project-card,
-.pdf-capture-mode .skill-item {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-  transform: none !important;
-}
-
-/* Asegurar que las animaciones no interfieran con la captura */
-.pdf-capture-mode * {
-  animation: none !important;
-  transition: none !important;
-}
-
-/* Media queries específicas para captura de PDF */
-@media screen and (max-width: 1200px) {
-  .pdf-capture-mode .responsive-element {
-    width: 100% !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-}
-
-/* Estilos para elementos lazy-loaded */
-.lazy-load {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* Forzar la visualización de todos los proyectos */
-.project-card,
-.project-item,
-.project {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* ===== ESTILOS MEJORADOS PARA LA SECCIÓN DE HERRAMIENTAS ===== */
-
-/* Contenedor principal de habilidades */
-.skills-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  margin: 1.5rem 0;
-}
-
-/* Items de habilidad - Sin fondo azul */
-.skill-item {
-  background: white;
-  color: #333;
-  padding: 1.2rem 1rem;
-  border-radius: 12px;
-  text-align: center;
-  font-weight: 600;
-  font-size: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 80px;
-  border: 1px solid #e9ecef;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Efecto hover para items de habilidad */
-.skill-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  border-color: #007bff;
-}
-
-/* Asegurar que el texto no se desborde */
-.skill-item span {
-  display: inline-block;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Contenedores específicos para categorías */
-.skills-frontend,
-.skills-backend,
-.skills-database,
-.skills-devops {
-  margin-bottom: 2.5rem;
-}
-
-/* Títulos de categorías */
-.skills-category-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 1.2rem;
-  color: #2c3e50;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #007bff;
-  display: inline-block;
-}
-
-/* Mejorar el espaciado general de la sección */
-.skills-section {
-  padding: 2.5rem 1.5rem;
-  background-color: #f8f9fa;
-  border-radius: 15px;
-  margin: 2rem 0;
-}
-
-/* Estilos para impresión - Ajustados */
-@media print {
-  .skills-container {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
-    gap: 0.8rem !important;
-  }
-
-  .skill-item {
-    padding: 0.8rem 0.5rem !important;
-    font-size: 10pt !important;
-    min-height: 60px !important;
-    break-inside: avoid;
-    page-break-inside: avoid;
-    border: 1px solid #ddd !important;
-    background: white !important;
-    color: #333 !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-  }
-
-  .skills-section {
-    background: none !important;
-    padding: 1rem 0 !important;
-    margin: 1rem 0 !important;
-  }
-
-  .skills-category-title {
-    font-size: 14pt !important;
-    border-bottom: 1px solid #007bff !important;
-  }
-}
-
-/* Responsive para dispositivos móviles */
-@media (max-width: 768px) {
-  .skills-container {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 0.8rem;
-  }
-
-  .skill-item {
-    padding: 1rem 0.8rem;
-    font-size: 0.9rem;
-    min-height: 70px;
-  }
-
-  .skills-category-title {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .skills-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .skill-item {
-    padding: 0.9rem 0.5rem;
-    font-size: 0.85rem;
-    min-height: 65px;
-  }
-
-  .skills-section {
-    padding: 1.5rem 1rem;
-  }
-}
-
-/* Estilos para modo de captura de PDF */
-.pdf-capture-mode .skills-container {
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
-  gap: 1rem !important;
-}
-
-.pdf-capture-mode .skill-item {
-  padding: 1.2rem 1rem !important;
-  font-size: 1rem !important;
-  min-height: 80px !important;
-  background: white !important;
-  border: 1px solid #e9ecef !important;
-  color: #333 !important;
-  box-shadow: 极 4px 12px rgba(0, 0, 0, 0.08) !important;
-}
-
-/* Clases utilitarias para ajustes específicos */
-.text-adjust {
-  font-size: 0.95em;
-  letter-spacing: -0.02em;
-}
-
-.no-wrap {
-  white-space: nowrap;
-}
-
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Mejora visual para elementos de tecnología */
-.tech-badge {
-  display: inline-block;
-  padding: 0.35em 0.65em;
-  font-size: 0.75em;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: 0.25rem;
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  color: #495057;
-  margin: 0.15rem;
-}
-
-/* === MEJORAS ESPECÍFICAS PARA MÓVILES (NUEVOS ESTILOS) === */
-
-/* Detección mejorada de dispositivos táctiles */
-@media (hover: none) and (pointer: coarse) {
-  .download-btn:hover {
-    transform: none;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-  }
-
-  .download-btn:active {
-    transform: scale(0.97);
-    box-shadow: 极 2px 5px rgba(0, 0, 0, 0.2);
-  }
-}
-
-/* Mejoras de visibilidad durante la generación de PDF */
-.pdf-generating-overlay {
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.92);
-}
-
-/* Mejoras para la captura de PDF en móviles */
-.pdf-capture-mode {
-  width: 100% !important;
-}
-
-/* Asegurar que los iframes y elementos embebidos no causen problemas */
-.pdf-capture-mode iframe,
-.pdf-capture-mode embed,
-.pdf-capture-mode object {
-  visibility: hidden !important;
-}
-
-/* Mejoras de rendimiento para móviles durante la captura */
-@media (极-width: 768px) {
-  .pdf-capture-mode {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-perspective: 1000;
-    perspective: 1000;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-
-  .pdf-capture-mode .skill-item {
-    padding: 1rem 0.8rem !important;
-    min-height: 70px !important;
-  }
-}
-
-/* Indicador de que se está generando el PDF */
-.pdf-generating-notice {
-  position: fixed;
-  bottom: 80px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 极, 0.8);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 20px;
-  font-size: 14px;
-  z-index: 1001;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(极0px);
-  animation: fadeInOut 2s ease-in-out infinite;
-  display: none;
-}
-
-@keyframes fadeInOut {
-  0%,
-  100% {
-    opacity: 0.8;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-.pdf-generating-notice.visible {
-  display: block;
-}
-
-/* Mejoras para la impresión en móviles */
-@media print and (max-width: 768px) {
-  @page {
-    margin: 0.5cm;
-    size: portrait;
-  }
-
-  body {
-    font-size: 12pt !important;
-    line-height: 1.4 !important;
-  }
-
-  h1 {
-    font-size: 18pt !important;
-  }
-
-  h2 {
-    font-size: 16pt !important;
-  }
-
-  h3 {
-    font-size: 14pt !important;
-  }
-
-  .skills-container {
-    grid-template-columns: repeat(2, 1极r) !important;
-  }
-
-  .skill-item {
-    padding: 0.5rem !important;
-    min-height: 50px !important;
-    font-size: 10pt !important;
-  }
-}
-
-/* Mejoras de accesibilidad para usuarios móviles */
-@media (max-width: 768px) {
-  .download-btn {
-    min-height: 44px;
-    min-width: 44px;
-  }
-}
-
-/* Prevenir zoom no deseado en iOS */
-@media (max-width: 768px) {
-  .download-buttons {
-    touch-action: manipulation;
-  }
-}
-
-/* Mejoras de rendimiento para animaciones en iOS */
-.download-btn {
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
-/* Optimización de rendimiento para dispositivos móviles */
-@media (max-width: 768px) {
-  .download-buttons {
-    will-change: transform;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
   }
 }
