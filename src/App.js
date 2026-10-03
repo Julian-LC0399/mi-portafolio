@@ -21,23 +21,23 @@ function App() {
     const handleLanguageChange = (event) => {
       setCurrentLanguage(event.detail);
     };
-    
+
     const handleStorageChange = (e) => {
       if (e.key === 'language') {
         setCurrentLanguage(e.newValue || 'es');
       }
     };
-    
+
     window.addEventListener('languageChange', handleLanguageChange);
     window.addEventListener('storage', handleStorageChange);
-    
+
     const intervalId = setInterval(() => {
       const lang = localStorage.getItem('language') || 'es';
       if (lang !== currentLanguage) {
         setCurrentLanguage(lang);
       }
     }, 1000);
-    
+
     return () => {
       window.removeEventListener('languageChange', handleLanguageChange);
       window.removeEventListener('storage', handleStorageChange);
@@ -69,12 +69,12 @@ function App() {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
+      element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
     }
-    setIsMobileMenuOpen(false); // Cerrar menú después de hacer clic
+    setIsMobileMenuOpen(false);
   };
 
   // Función para scroll suave al principio (Hero)
@@ -93,14 +93,14 @@ function App() {
           <nav className="main-nav">
             <div className="nav-content">
               {/* Botón de inicio */}
-              <button 
+              <button
                 onClick={scrollToTop}
                 className="nav-logo-button"
                 aria-label={navTexts[currentLanguage].backToTop}
               >
                 {navTexts[currentLanguage].backToTop}
               </button>
-              
+
               {/* Menú de navegación interno (escritorio) */}
               <div className="internal-nav desktop-only">
                 <button onClick={() => scrollToSection('about')}>
@@ -119,7 +119,7 @@ function App() {
 
               {/* Menú hamburguesa para móviles */}
               <div className="mobile-nav-container">
-                <button 
+                <button
                   className="mobile-menu-toggle"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                   aria-label={navTexts[currentLanguage].menu}
@@ -127,7 +127,7 @@ function App() {
                   {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
                 </button>
               </div>
-              
+
               <LanguageSwitcher />
             </div>
 
@@ -150,13 +150,16 @@ function App() {
             )}
           </nav>
         </header>
-        
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-        
+
+        {/* ===== CONTENIDO DEL PDF ===== */}
+        <div id="portfolio-content">
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+        </div>
+
         <DownloadButtons />
       </div>
     </LanguageProvider>

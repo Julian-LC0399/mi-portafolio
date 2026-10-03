@@ -1,5 +1,5 @@
 /* ============================================================
-   DOWNLOAD BUTTONS (PDF)
+   DOWNLOAD BUTTONS
    ============================================================ */
 
 .download-buttons {
@@ -72,39 +72,6 @@
   0%   { transform: scale(1); }
   50%  { transform: scale(1.02); }
   100% { transform: scale(1); }
-}
-
-/* ============================================================
-   OVERLAY DE GENERACIÓN DE PDF
-   ============================================================ */
-.pdf-generating-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.92);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  color: white;
-  font-size: 1.2rem;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-.pdf-generating-spinner {
-  width: 60px;
-  height: 60px;
-  border: 5px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: #fff;
-  animation: spin 1s ease-in-out infinite;
-  margin-bottom: 20px;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
 }
 
 /* ============================================================
@@ -231,8 +198,46 @@
 }
 
 /* ============================================================
+   OVERLAY DE GENERACIÓN DE PDF
+   ============================================================ */
+.pdf-generating-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: white;
+  font-size: 1.2rem;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.pdf-generating-spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
    MODO CAPTURA DE PDF (html2canvas)
    ============================================================ */
+#portfolio-content {
+  width: 100% !important;
+  position: relative;
+}
+
 .pdf-capture-mode {
   overflow: visible !important;
   height: auto !important;
@@ -286,8 +291,79 @@
   }
 }
 
+/* Forzar visibilidad general */
+.project-card,
+.project-item,
+.project {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+iframe,
+embed,
+object {
+  display: none !important;
+}
+
+svg {
+  shape-rendering: geometricPrecision;
+}
+
 /* ============================================================
-   PRINT
+   NEUTRALIZAR GRADIENTES EN PSEUDO-ELEMENTOS PARA PDF
+   (html2canvas no puede procesar pseudo-elementos con gradientes)
+   ============================================================ */
+.pdf-capture-mode .hero::before {
+  background: none !important;
+  animation: none !important;
+}
+
+.pdf-capture-mode .hero-content h2 {
+  background: none !important;
+  -webkit-text-fill-color: #007bff !important;
+  color: #007bff !important;
+}
+
+.pdf-capture-mode .hero-content h2::after {
+  background: #007bff !important;
+}
+
+.pdf-capture-mode .section-title::after,
+.pdf-capture-mode .about h2::after,
+.pdf-capture-mode .skills-section h2::after,
+.pdf-capture-mode .contact-title::after {
+  background: #007bff !important;
+}
+
+.pdf-capture-mode .highlight {
+  background: none !important;
+  -webkit-text-fill-color: #007bff !important;
+  color: #007bff !important;
+}
+
+.pdf-capture-mode .hero {
+  background: #f8f9fa !important;
+}
+
+.pdf-capture-mode .hero-image img {
+  transform: none !important;
+  filter: none !important;
+}
+
+.pdf-capture-mode .tech-highlights span {
+  background: rgba(0, 123, 255, 0.1) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+.pdf-capture-mode .download-btn,
+.pdf-capture-mode .project-link,
+.pdf-capture-mode .language-switcher {
+  background: #007bff !important;
+}
+
+/* ============================================================
+   PRINT (@media print)
    ============================================================ */
 @media print {
   @page {
@@ -418,4 +494,38 @@
     page-break-inside: avoid;
     break-inside: avoid;
   }
+}
+
+/* ============================================================
+   PRINT MODE (controlado por JS)
+   ============================================================ */
+.print-mode .main-nav,
+.print-mode .download-buttons,
+.print-mode .language-switcher,
+.print-mode footer,
+.print-mode .contact-form,
+.print-mode .app-header,
+.print-mode .btn,
+.print-mode button {
+  display: none !important;
+}
+
+.print-mode {
+  background: white !important;
+  padding: 1rem !important;
+}
+
+.print-mode .hero-section,
+.print-mode .about-section,
+.print-mode .projects-section,
+.print-mode .skills-section,
+.print-mode .contact-section,
+.print-mode section {
+  margin: 1rem 0 !important;
+  padding: 0.5rem 0 !important;
+}
+
+.print-mode a {
+  color: #0000ee !important;
+  text-decoration: underline !important;
 }
