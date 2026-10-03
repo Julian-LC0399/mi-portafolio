@@ -1,8 +1,8 @@
 {
   "hero": {
     "title": "Desarrollador Full-Stack",
-    "description": "Especializado en arquitecturas JavaScript (React, Node.js) y PHP (Laravel). Desarrollo soluciones completas desde el frontend interactivo hasta APIs robustas, con especial enfoque en accesibilidad.",
-    "techs": ["React", "Node.js", "Laravel", "Accesibilidad"]
+    "description": "Desarrollador Full-Stack especializado en JavaScript (React, Node.js), PHP (Laravel) y Python (Streamlit). Construyo soluciones completas, desde el frontend hasta arquitecturas de observabilidad para infraestructura crítica. Desarrollé SIMPOL, una plataforma de monitoreo inteligente para 30 servidores críticos del Banco Caroní, con alertas automatizadas y Capacity Planning predictivo.",
+    "techs": ["React", "Node.js", "Laravel", "Python", "Streamlit", "Accesibilidad"]
   },
   "about": {
     "title": "Sobre mí",
