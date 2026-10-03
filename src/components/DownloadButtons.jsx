@@ -80,7 +80,6 @@ const DownloadButtons = () => {
           transition: 'none'
         },
         filter: (node) => {
-          // Excluir elementos no deseados
           if (node.classList && node.classList.contains('no-pdf')) return false;
           if (node.classList && node.classList.contains('download-buttons')) return false;
           if (node.classList && node.classList.contains('language-switcher')) return false;
@@ -117,7 +116,7 @@ const DownloadButtons = () => {
       const ctx = canvas.getContext('2d');
       ctx.drawImage(img, 0, 0);
 
-      // 6. Generar PDF multipágina
+      // 6. Generar PDF multipágina con cortes inteligentes
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
@@ -129,14 +128,61 @@ const DownloadButtons = () => {
 
       const ratio = pdfWidth / canvas.width;
       const pxPerPage = Math.floor(pdfHeight / ratio);
-      const totalPages = Math.ceil(canvas.height / pxPerPage);
 
-      for (let page = 0; page < totalPages; page++) {
-        const yStart = page * pxPerPage;
-        const yEnd = Math.min(yStart + pxPerPage, canvas.height);
-        const sliceHeight = yEnd - yStart;
+      // ---- Detectar breakpoints (dónde SÍ podemos cortar) ----
+      const elementRect = element.getBoundingClientRect();
+      const scaleY = canvas.height / elementRect.height;
 
-        if (sliceHeight <= 0) continue;
+      const breakpoints = new Set([canvas.height]);
+
+      element.querySelectorAll(
+        'section, .project-card, .skill-category-card, .about-section, .contact-card'
+      ).forEach((node) => {
+        const rect = node.getBoundingClientRect();
+        const bottomInCanvas = Math.round((rect.bottom - elementRect.top) * scaleY);
+        if (bottomInCanvas > 50 && bottomInCanvas < canvas.height - 20) {
+          breakpoints.add(bottomInCanvas);
+        }
+      });
+
+      const sortedBreaks = Array.from(breakpoints).sort((a, b) => a - b);
+
+      // ---- Calcular cortes óptimos ----
+      const pages = [];
+      let cursor = 0;
+
+      while (cursor < canvas.height - 30) {
+        const idealEnd = cursor + pxPerPage;
+
+        if (idealEnd >= canvas.height) {
+          if (canvas.height - cursor > 50) {
+            pages.push({ start: cursor, end: canvas.height });
+          }
+          break;
+        }
+
+        let bestBreak = -1;
+        for (const bp of sortedBreaks) {
+          if (bp > cursor + 50 && bp <= idealEnd) {
+            bestBreak = bp;
+          } else if (bp > idealEnd) {
+            break;
+          }
+        }
+
+        const end = bestBreak > cursor ? bestBreak : idealEnd;
+
+        if (end - cursor > 50) {
+          pages.push({ start: cursor, end });
+        }
+
+        cursor = end;
+      }
+
+      // ---- Dibujar cada página ----
+      pages.forEach((pageRange, index) => {
+        const sliceHeight = pageRange.end - pageRange.start;
+        if (sliceHeight <= 0) return;
 
         const pageCanvas = document.createElement('canvas');
         pageCanvas.width = canvas.width;
@@ -146,7 +192,7 @@ const DownloadButtons = () => {
         pageCtx.drawImage(
           canvas,
           0,
-          yStart,
+          pageRange.start,
           canvas.width,
           sliceHeight,
           0,
@@ -157,7 +203,7 @@ const DownloadButtons = () => {
 
         const pageImgData = pageCanvas.toDataURL('image/jpeg', 0.95);
 
-        if (page > 0) {
+        if (index > 0) {
           pdf.addPage();
         }
 
@@ -169,9 +215,9 @@ const DownloadButtons = () => {
           pdfWidth,
           sliceHeight * ratio
         );
-      }
+      });
 
-      // 7. Guardar sin fecha
+      // 7. Guardar sin fecha en el nombre
       pdf.save(`portfolio-${lang}.pdf`);
 
     } catch (error) {
