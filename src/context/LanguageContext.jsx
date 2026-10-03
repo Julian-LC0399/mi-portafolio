@@ -11,23 +11,28 @@ export const useLanguage = () => {
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('es');
+  const [language, setLanguageState] = useState('es');
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language');
     if (savedLanguage) {
-      setLanguage(savedLanguage);
+      setLanguageState(savedLanguage);
     }
   }, []);
+
+  // Setter público: actualiza estado Y persiste en localStorage
+  const setLanguage = (lang) => {
+    setLanguageState(lang);
+    localStorage.setItem('language', lang);
+  };
 
   const toggleLanguage = () => {
     const newLanguage = language === 'es' ? 'en' : 'es';
     setLanguage(newLanguage);
-    localStorage.setItem('language', newLanguage);
   };
 
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage }}>
+    <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage }}>
       {children}
     </LanguageContext.Provider>
   );

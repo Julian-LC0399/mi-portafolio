@@ -1,7 +1,8 @@
-/* Estilos base */
+/* ============================================================
+   ABOUT
+   ============================================================ */
 .about {
   padding: 2rem 1rem;
-  line-height: 1.6;
   background-color: #f8f9fa;
 }
 
@@ -74,12 +75,14 @@
   color: #007bff;
 }
 
-/* Responsive */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (min-width: 768px) {
   .about-content {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .about-section:nth-child(1),
   .about-section:nth-child(4) {
     grid-column: span 2;
@@ -90,20 +93,17 @@
   .about {
     padding: 4rem 2rem;
   }
-  
+
   .about-content {
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
   }
-  
-  .about-section:nth-child(1) {
-    grid-column: span 3;
-  }
-  
+
+  .about-section:nth-child(1),
   .about-section:nth-child(4) {
     grid-column: span 3;
   }
-  
+
   .about-section {
     padding: 2.5rem;
   }

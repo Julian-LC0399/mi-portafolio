@@ -71,13 +71,12 @@
   margin-bottom: 2rem;
 }
 
+/* Ícono de categoría: color sólido para compatibilidad con html2canvas (PDF) */
 .category-header svg {
-  font-size: 2rem;
-  color: #007bff; /* Color sólido en lugar de gradiente */
-  background: linear-gradient(90deg, #007bff, #00bfff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  width: 2em;
+  height: 2em;
+  color: #007bff;
+  flex-shrink: 0;
 }
 
 .category-header h3 {
@@ -109,15 +108,17 @@
   box-shadow: 0 5px 15px rgba(0, 123, 255, 0.1);
 }
 
+/* Ícono de skill: tamaño uniforme con width/height */
 .skill-item svg {
-  font-size: 1.5rem;
-  color: #007bff; /* Color sólido para mejor visibilidad */
+  width: 1.5em;
+  height: 1.5em;
+  color: #007bff;
   flex-shrink: 0;
   transition: color 0.3s ease;
 }
 
 .skill-item:hover svg {
-  color: #0056b3; /* Color más oscuro al hacer hover */
+  color: #0056b3;
 }
 
 .skill-item span {
@@ -149,7 +150,7 @@
   }
   
   .skills-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
   }
   
@@ -158,7 +159,8 @@
   }
   
   .category-header svg {
-    font-size: 2.2rem;
+    width: 2.2em;
+    height: 2.2em;
   }
   
   .category-header h3 {
@@ -166,7 +168,7 @@
   }
   
   .skills-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .skill-item {
@@ -174,7 +176,8 @@
   }
   
   .skill-item svg {
-    font-size: 1.6rem;
+    width: 1.6em;
+    height: 1.6em;
   }
   
   .skill-item span {
@@ -192,7 +195,8 @@
   }
   
   .skill-item svg {
-    font-size: 1.3rem;
+    width: 1.3em;
+    height: 1.3em;
   }
   
   .skill-item span {

@@ -1,4 +1,6 @@
-/* src/styles/projects.css */
+/* ============================================================
+   PROJECTS
+   ============================================================ */
 .projects {
   background-color: #f8f9fa;
   padding: 5rem 1rem;
@@ -83,10 +85,7 @@
 
 .project-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: linear-gradient(transparent 60%, rgba(0, 0, 0, 0.7));
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -136,48 +135,9 @@
   transform: translateY(-2px);
 }
 
-.project-links {
-  display: flex;
-  gap: 1rem;
-}
-
-/* ESTILOS ACTUALIZADOS PARA BOTONES */
-.project-link {
-  padding: 0.8rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  background: linear-gradient(90deg, #007bff, #00bfff);
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.project-link:hover {
-  background: linear-gradient(90deg, #0069d9, #0099cc);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-  color: white;
-}
-
-/* Eliminamos los estilos específicos para el botón demo ya que ahora son iguales */
-.project-link.demo {
-  /* Mismos estilos que el botón principal */
-  background: linear-gradient(90deg, #007bff, #00bfff);
-  color: white;
-}
-
-.project-link.demo:hover {
-  background: linear-gradient(90deg, #0069d9, #0099cc);
-  color: white;
-}
-
-/* ===== Context badge (Pasantía / Tesis) ===== */
+/* ============================================================
+   CONTEXT BADGE (Pasantía / Trabajo de Grado)
+   ============================================================ */
 .project-title-row {
   display: flex;
   align-items: center;
@@ -204,7 +164,9 @@
   white-space: nowrap;
 }
 
-/* Animaciones */
+/* ============================================================
+   ANIMACIONES
+   ============================================================ */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -216,16 +178,18 @@
   }
 }
 
-/* Responsive */
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
 @media (min-width: 768px) {
   .projects {
     padding: 6rem 2rem;
   }
-  
+
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .project-image-container {
     height: 280px;
   }
@@ -235,20 +199,8 @@
   .projects-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .section-title {
     font-size: 3rem;
-  }
-}
-
-/* Ajustes para móviles */
-@media (max-width: 480px) {
-  .project-links {
-    flex-direction: column;
-  }
-  
-  .project-link {
-    text-align: center;
-    justify-content: center;
   }
 }
