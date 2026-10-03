@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/projects.css';
 import Eduneg from '../assets/images/eduneg.png';
 import Gestion from '../assets/images/gestion.png';
+import Simpol from '../assets/images/SIMPOL.jpg';
 import { useTranslation } from '../hooks/useTranslation';
 
 const Projects = () => {
@@ -12,17 +13,24 @@ const Projects = () => {
       id: 1,
       titleKey: "eduneg",
       technologies: ["Next.js", "Tailwind"],
-      github: "https://github.com/Vdiaz127/EDUNEG",
       image: Eduneg,
       alt: "Captura de pantalla de la aplicación Gestión de Materias"
     },
     {
       id: 2,
       titleKey: "accountModule",
+      context: "Internship",
       technologies: ["PHP", "MySQL"],
-      github: "https://github.com/Julian-LC0399/Sistema-descriptivo-de-movimiento-de-cuenta",
       image: Gestion,
-      alt: "Captura de pantalla del módulo de movimiento de cuentas" 
+      alt: "Captura de pantalla del módulo de movimiento de cuentas"
+    },
+    {
+      id: 3,
+      titleKey: "simpol",
+      context: "DegreeProject",
+      technologies: ["Python", "Streamlit", "MySQL", "PRTG", "psutil"],
+      image: Simpol,
+      alt: "Logo del Sistema Inteligente de Monitoreo Permanente Online (SIMPOL)"
     }
   ];
 
@@ -44,34 +52,19 @@ const Projects = () => {
                 <div className="project-overlay"></div>
               </div>
               <div className="project-info">
-                <h3>{t(`projects.projectsList.${project.titleKey}.title`)}</h3>
+                <div className="project-title-row">
+                  <h3>{t(`projects.projectsList.${project.titleKey}.title`)}</h3>
+                  {project.context && (
+                    <span className="project-context-badge">
+                      {t(`projects.context.${project.context}`)}
+                    </span>
+                  )}
+                </div>
                 <p>{t(`projects.projectsList.${project.titleKey}.description`)}</p>
                 <div className="technologies">
                   {project.technologies.map((tech, index) => (
                     <span key={index} className="tech-tag">{tech}</span>
                   ))}
-                </div>
-                <div className="project-links">
-                  {project.github && (
-                    <a 
-                      href={project.github} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="project-link"
-                    >
-                      {t('projects.viewCode')}
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a 
-                      href={project.demo} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="project-link demo"
-                    >
-                      {t('projects.viewDemo')}
-                    </a>
-                  )}
                 </div>
               </div>
             </div>

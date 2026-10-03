@@ -37,14 +37,22 @@
     "subtitle": "Algunos de mis trabajos recientes",
     "viewCode": "Ver código",
     "viewDemo": "Ver demo",
+    "context": {
+      "Internship": "Pasantía",
+      "DegreeProject": "Trabajo de Grado"
+    },
     "projectsList": {
       "eduneg": {
         "title": "Eduneg",
-        "description": "Aplicación para gestión de materias con interfaz intuitiva y diseño responsivo."
+        "description": "Aplicación de gestión académica con arquitectura moderna, interfaz intuitiva y diseño responsivo. Desarrollada con Next.js y Tailwind CSS."
       },
       "accountModule": {
         "title": "Módulo de movimiento de cuentas",
-        "description": "Módulo para gestionar el movimiento de cuentas en una aplicación de gestión con transacciones seguras."
+        "description": "Módulo desarrollado durante mi pasantía profesional para la gestión de movimientos de cuentas, con transacciones seguras y validación de datos."
+      },
+      "simpol": {
+        "title": "SIMPOL",
+        "description": "Sistema inteligente de monitoreo permanente en línea para servidores críticos físicos y virtuales. Centraliza telemetría en tiempo real, genera alertas automatizadas y proyecta el consumo de recursos mediante modelos de Capacity Planning."
       }
     }
   },
