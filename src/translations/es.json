@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "Desarrollador Full-Stack",
-    "description": "Desarrollador Full-Stack especializado en JavaScript (React, Node.js), PHP (Laravel) y Python (Streamlit). Construyo soluciones completas, desde el frontend hasta arquitecturas de observabilidad para infraestructura crítica. Desarrollé SIMPOL, una plataforma de monitoreo inteligente para 30 servidores críticos del Banco Caroní, con alertas automatizadas y Capacity Planning predictivo.",
+    "description": "Desarrollador Full-Stack especializado en JavaScript, PHP y Python. Construyo soluciones completas, desde el frontend hasta arquitecturas de observabilidad para infraestructura crítica. Desarrollé SIMPOL, una plataforma de monitoreo inteligente para el Banco Caroní.",
     "techs": ["React", "Node.js", "Laravel", "Python", "Streamlit", "Accesibilidad"]
   },
   "about": {
@@ -9,15 +9,15 @@
     "sections": {
       "history": {
         "title": "Mi historia",
-        "content": "Soy Julián López Castillo, estudiante de Ingeniería Informática en la Universidad Nacional Experimental de Guayana (UNEG). Como persona con discapacidad motora, tengo un especial interés en el desarrollo de tecnologías accesibles."
+        "content": "Soy Julián López Castillo, Ingeniero en Informática en espera de acto de grado por la Universidad Nacional Experimental de Guayana (UNEG). Tengo una discapacidad motora, por lo que trabajo de forma remota. Disfruto construir soluciones completas y resolver problemas técnicos con impacto real."
       },
       "environment": {
         "title": "Entorno de trabajo",
-        "content": "Desarrollo mis proyectos en Visual Studio Code con configuraciones personalizadas para eficiencia y accesibilidad, utilizando extensiones como ESLint, Prettier y herramientas para WCAG. Mi entorno está optimizado para productividad en desarrollo Full-Stack."
+        "content": "Trabajo en un entorno de desarrollo optimizado para productividad y accesibilidad, con configuraciones personalizadas y herramientas de análisis estático que garantizan la calidad del código en cada proyecto."
       },
       "focus": {
         "title": "Enfoque profesional",
-        "content": "Desarrollador Full-Stack especializado en soluciones JavaScript (React, Node.js) y PHP (Laravel). Combino mis conocimientos técnicos con mi perspectiva única sobre accesibilidad digital."
+        "content": "Combino el desarrollo Full-Stack con una perspectiva única sobre accesibilidad digital y observabilidad de infraestructura crítica. Mi objetivo es construir sistemas que funcionen para todos, con énfasis en la experiencia del usuario y la continuidad operativa."
       },
       "skills": {
         "title": "Habilidades clave",
@@ -25,9 +25,9 @@
           "React.js / Next.js",
           "Node.js / Express",
           "PHP / Laravel",
+          "Python / Streamlit",
           "Accesibilidad WCAG",
-          "Git y control de versiones",
-          "Desarrollo ágil"
+          "Git y control de versiones"
         ]
       }
     }
